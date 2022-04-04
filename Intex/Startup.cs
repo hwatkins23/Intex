@@ -30,6 +30,13 @@ namespace Intex
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<CrashDbContext>(options =>
+            {
+                options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
+            });
+
+            //admin connections
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential 
@@ -37,6 +44,7 @@ namespace Intex
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -54,11 +62,6 @@ namespace Intex
 
             services.AddRazorPages();
 
-
-            services.AddDbContext<CrashDbContext>(options =>
-            {
-                options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
-            });
 
             services.AddScoped<ICrashRepository, EFCrashRepository>();
             
