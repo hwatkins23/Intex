@@ -3,13 +3,14 @@ using System.Linq;
 
 namespace Intex.Models
 {
-    public class ICrashRepository
+    public interface ICrashRepository
     {
             public IQueryable<Crash> Crashes { get; }
 
-            //public void Save(Crash c);
-            //public void Add(Crash c);
-            //public void Delete(Crash c);
+            public void SaveCrash(Crash c);
+            public void AddCrash(Crash c);
+            //public void EditCrash(Crash c);
+            public void DeleteCrash(Crash c);
 
     }
 }
