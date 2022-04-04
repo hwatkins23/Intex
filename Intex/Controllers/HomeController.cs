@@ -11,7 +11,7 @@ namespace Intex.Controllers
 {
     public class HomeController : Controller
     {
-        //now uses the repo to make testing easier
+        //uses the repo to make testing easier
         private ICrashRepository _repo;
 
         public HomeController(ICrashRepository temp)
@@ -26,7 +26,9 @@ namespace Intex.Controllers
 
         public IActionResult Summary()
         {
-            return View();
+            var crash = _repo.CrashData.ToList();
+
+            return View(crash);
         }
 
         public IActionResult Privacy()
