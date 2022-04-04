@@ -1,4 +1,5 @@
 using Intex.Data;
+using Intex.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +36,14 @@ namespace Intex
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+
+            services.AddDbContext<CrashDbContext>(options =>
+            {
+                options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
+            });
+
+            
+
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -44,6 +53,7 @@ namespace Intex
                 options.Password.RequiredLength = 10;
                 options.Password.RequiredUniqueChars = 1;
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
