@@ -12,7 +12,7 @@ namespace Intex.Models
             _context = temp;
         }
 
-        public IQueryable<Crash> Crashes => _context.Crashes;
+        public IQueryable<Crash> CrashData => _context.CrashData;
 
         public void SaveCrash(Crash c)
         {

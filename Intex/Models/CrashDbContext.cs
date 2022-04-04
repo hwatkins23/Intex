@@ -10,6 +10,6 @@ namespace Intex.Models
 
         }
 
-        public DbSet<Crash> Crashes { get; set; }
+        public DbSet<Crash> CrashData { get; set; }
     }
 }

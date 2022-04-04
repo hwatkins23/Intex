@@ -7,7 +7,7 @@ namespace Intex.Models
     {
         [Key]
         [Required]
-        public string CRASH_ID { get; set; }
+        public int CRASH_ID { get; set; }
         public string CRASH_DATETIME { get; set; }
         public string ROUTE { get; set; }
         public float MILEPOINT { get; set; }
