@@ -31,9 +31,12 @@ namespace Intex
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
+
             services.AddRazorPages();
 
 
@@ -42,6 +45,7 @@ namespace Intex
                 options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
             });
 
+            services.AddScoped<ICrashRepository, EFCrashRepository>();
             
 
             services.Configure<IdentityOptions>(options =>
