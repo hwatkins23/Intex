@@ -11,6 +11,13 @@ namespace Intex.Controllers
 {
     public class HomeController : Controller
     {
+        //now uses the repo to make testing easier
+        private ICrashRepository _repo;
+
+        public HomeController(ICrashRepository temp)
+        {
+            _repo = temp;
+        }
 
         public IActionResult Index()
         {
@@ -18,6 +25,11 @@ namespace Intex.Controllers
         }
 
         public IActionResult Summary()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
         {
             return View();
         }
