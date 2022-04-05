@@ -1,4 +1,5 @@
 ﻿using Intex.Models;
+using Intex.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -24,12 +25,26 @@ namespace Intex.Controllers
             return View();
         }
 
-        public IActionResult Summary()
+        public IActionResult Summary(int pageNum = 1)
         {
-            var crash = repo.crashes
-                .ToList();
+            int pageSize = 100;
 
-            return View(crash);
+            var x = new CrashesViewModel
+            {
+                crashes = repo.crashes
+                .OrderBy(x => x.CRASH_DATE)
+                .Skip((pageNum = 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumCrashes = repo.crashes.Count(),
+                    CrashesPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+        };
+
+            return View(x);
         }
 
         public IActionResult Privacy()

@@ -3,7 +3,7 @@
     ViewData["Title"] = "Summary";
 }
 
-@model List<crash>
+@model CrashesViewModel
 
 
 <table class="table table-bordered table-striped">
@@ -44,7 +44,7 @@
     </thead>
 
     <tbody>
-        @foreach (var x in Model)
+        @foreach (var x in Model.crashes)
         {
         <tr>
             <td>@x.CRASH_ID</td>
@@ -82,3 +82,8 @@
     </tbody>
 
 </table>
+
+<br />
+
+<a asp-action="Index" asp-route-pageNum="1">1</a>
+<a asp-action="Index" asp-route-pageNum="2">2</a>
