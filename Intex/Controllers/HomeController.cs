@@ -27,7 +27,6 @@ namespace Intex.Controllers
         public IActionResult Summary()
         {
             var crash = repo.CrashData
-                .OrderBy(x => x.CRASH_ID)
                 .ToList();
 
             return View(crash);
