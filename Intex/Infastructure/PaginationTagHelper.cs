@@ -36,7 +36,11 @@ namespace Intex.Infastructure
             {
                 TagBuilder tb = new TagBuilder("a");
 
-                tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+                tb.Attributes["href"] = uh.Action(PageAction, new {
+
+                    pageNum = i
+
+                });
                 tb.InnerHtml.AppendHtml(i.ToString());
 
                 final.InnerHtml.AppendHtml(tb);
