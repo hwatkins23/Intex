@@ -3,16 +3,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Intex.Models
 {
-    public class Crash
+    public class crash
     {
         [Key]
         [Required]
         public int CRASH_ID { get; set; }
-        public string CRASH_DATETIME { get; set; }
+        public string CRASH_DATE { get; set; }
+        public string DAY_OF_THE_WEEK { get; set; }
+        public string MONTH { get; set; }
+        public int DAY_OF_THE_MONTH { get; set; }
+        public int YEAR { get; set; }
+        public string TIME {get;set;}
+        public string TIME_OF_DAY { get; set; }
         public string ROUTE { get; set; }
-        public decimal MILEPOINT { get; set; }
-        public decimal LAT_UTM_Y { get; set; }
-        public decimal LONG_UTM_X { get; set; }
+        public string MILEPOINT { get; set; }
+        public string LAT_UTM_Y { get; set; }
+        public string LONG_UTM_X { get; set; }
         public string MAIN_ROAD_NAME { get; set; }
         public string CITY { get; set; }
         public string COUNTY_NAME { get; set; }
