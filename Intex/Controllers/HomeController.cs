@@ -12,11 +12,11 @@ namespace Intex.Controllers
     public class HomeController : Controller
     {
         //uses the repo to make testing easier
-        private ICrashRepository _repo;
+        private ICrashRepository repo;
 
         public HomeController(ICrashRepository temp)
         {
-            _repo = temp;
+            repo = temp;
         }
 
         public IActionResult Index()
@@ -26,7 +26,9 @@ namespace Intex.Controllers
 
         public IActionResult Summary()
         {
-            var crash = _repo.CrashData.ToList();
+            var crash = repo.CrashData
+                .OrderBy(x => x.CRASH_ID)
+                .ToList();
 
             return View(crash);
         }
