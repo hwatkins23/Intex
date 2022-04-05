@@ -32,7 +32,7 @@ namespace Intex.Controllers
             var x = new CrashesViewModel
             {
                 crashes = repo.crashes
-                .OrderBy(x => x.CRASH_DATE)
+                .OrderByDescending(x => x.CRASH_DATE)
                 .Skip((pageNum = 1) * pageSize)
                 .Take(pageSize),
 
