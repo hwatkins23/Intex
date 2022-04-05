@@ -27,7 +27,8 @@ namespace Intex.Controllers
 
         public IActionResult Summary(int pageNum = 1)
         {
-            int pageSize = 100;
+            int pageSize = 50;
+            
 
             var x = new CrashesViewModel
             {
@@ -40,7 +41,7 @@ namespace Intex.Controllers
                 {
                     TotalNumCrashes = repo.crashes.Count(),
                     CrashesPerPage = pageSize,
-                    CurrentPage = pageNum
+                    CurrentPage = pageNum,
                 }
         };
 
