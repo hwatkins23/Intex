@@ -31,9 +31,9 @@ namespace Intex
         {
             //Database:
 
-            services.AddDbContext<CrashDbContext>(options =>
+            services.AddDbContext<crashDbContext>(options =>
             {
-                options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
+                options.UseMySql(Configuration["ConnectionStrings:crashDbConnection"]);
             });
 
 
@@ -66,7 +66,7 @@ namespace Intex
 
             services.AddRazorPages();
 
-            services.AddScoped<ICrashRepository, EFCrashRepository>();
+            services.AddScoped<IcrashRepository, EFcrashRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

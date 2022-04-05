@@ -3,29 +3,29 @@ using System.Linq;
 
 namespace Intex.Models
 {
-    public class EFCrashRepository : ICrashRepository
+    public class EFcrashRepository : IcrashRepository
     {
-        private CrashDbContext _context { get; set; }
+        private crashDbContext _context { get; set; }
 
-        public EFCrashRepository(CrashDbContext temp)
+        public EFcrashRepository(crashDbContext temp)
         {
             _context = temp;
         }
 
-        public IQueryable<Crash> CrashData => _context.CrashData;
+        public IQueryable<crash> crashes => _context.crashes;
 
-        public void SaveCrash(Crash c)
+        public void SaveCrash(crash c)
         {
             _context.SaveChanges();
         }
 
-        public void AddCrash(Crash c)
+        public void AddCrash(crash c)
         {
             _context.Add(c);
             _context.SaveChanges();
         }
 
-        //public void EditCrash(Crash c)
+        //public void EditCrash(crash c)
         //{
         //_context.Update(c);
         //_context.SaveChanges();
@@ -33,7 +33,7 @@ namespace Intex.Models
         //return RedirectToAction("ShowBowlers");
         //}
 
-        public void DeleteCrash(Crash c)
+        public void DeleteCrash(crash c)
         {
             _context.Remove(c);
             _context.SaveChanges();
