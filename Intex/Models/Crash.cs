@@ -10,9 +10,9 @@ namespace Intex.Models
         public int CRASH_ID { get; set; }
         public string CRASH_DATETIME { get; set; }
         public string ROUTE { get; set; }
-        public float MILEPOINT { get; set; }
-        public float LAT_UTM_Y { get; set; }
-        public float LONG_UTM_X { get; set; }
+        public decimal MILEPOINT { get; set; }
+        public decimal LAT_UTM_Y { get; set; }
+        public decimal LONG_UTM_X { get; set; }
         public string MAIN_ROAD_NAME { get; set; }
         public string CITY { get; set; }
         public string COUNTY_NAME { get; set; }
