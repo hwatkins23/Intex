@@ -1,0 +1,75 @@
+﻿@page "/admin/crashes"
+@page "/admin"
+
+@inherits OwningComponentBase<IcrashRepository>
+
+<h3>Crashes</h3>
+
+<h2>Welcome to the administrative view! You have access to edit, delete, and add things to the database!</h2>
+
+<thead>
+    <tr>
+        <th>Crash Id</th>
+        <th>Date</th>
+        <th>Route</th>
+        <th>Milepoint</th>
+        <th>City</th>
+        <th>County</th>
+        <th>Severity</th>
+    </tr>
+</thead>
+<tbody>
+    @if (CrashData?.Count() > 0)
+        {
+            @foreach (crash c in CrashData)
+                {
+                    <tr>
+                        <td>@c.CRASH_ID</td>
+                        <td>@c.CRASH_DATE</td>
+                        <td>@c.ROUTE</td>
+                        <td>@c.MILEPOINT</td>
+                        <td>@c.COUNTY_NAME</td>
+                        <td>@c.CRASH_SEVERITY_ID</td>
+
+                        <td>
+                            <NavLink class="btn btn-info btn-sm" href="@GetDetailsUrl(c.CRASH_ID)">Details</NavLink>
+                        </td>
+                        <td>
+                            <NavLink class="btn btn-info btn-sm" href="@GetEditUrl(c.CRASH_ID)">Details</NavLink>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" @onclick="@(x => RemoveCrash(c))">Delete</button>
+                        </td>
+                    </tr>
+                }
+        }
+    else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No Crashes</td>
+                </tr>
+            }
+</tbody>
+<NavLink class="btn btn-primary" href="/admin/projects/create">Create</NavLink>
+
+@code {
+    public IcrashRepository repo => Service;
+    public IEnumerable<crash> CrashData { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+    public async Task UpdateData()
+    {
+        CrashData = await repo.crashes.ToListAsync();
+    }
+
+    public string GetDetailsUrl(long id) => $"/admin/crashes/details/{id}";
+    public string GetEditUrl(long id) => $"/admin/crashes/edit/{id}";
+
+    public async Task RemoveCrash (crash c)
+    {
+        repo.DeleteCrash(c);
+        await UpdateData();
+    }
+}
