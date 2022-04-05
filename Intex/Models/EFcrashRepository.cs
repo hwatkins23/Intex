@@ -25,13 +25,6 @@ namespace Intex.Models
             _context.SaveChanges();
         }
 
-        //public void EditCrash(crash c)
-        //{
-        //_context.Update(c);
-        //_context.SaveChanges();
-
-        //return RedirectToAction("ShowBowlers");
-        //}
 
         public void DeleteCrash(crash c)
         {

@@ -9,7 +9,6 @@ namespace Intex.Models
 
             public void SaveCrash(crash c);
             public void AddCrash(crash c);
-            //public void EditCrash(CrashData c);
             public void DeleteCrash(crash c);
 
     }
