@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Delete Record";
+}
+@model crash
+
+<h2>Confirm Deletion</h2>
+<h3>Are you sure you want to delete the record for the following crash?</h3>
+
+<div class="col-5">
+    <table class="table table-hover">
+        <tbody>
+            <tr class="m-1 border-bottom">
+                <td class="text-left font-weight-bold">Date:</td>
+                <td class="text-center">@Model.CRASH_DATE</td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="text-left font-weight-bold">Time:</td>
+                <td class="text-center">@Model.TIME @Model.TIME_OF_DAY</td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="text-left font-weight-bold">City:</td>
+                <td class="text-center">@Model.CITY</td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="text-left font-weight-bold">County:</td>
+                <td class="text-center">@Model.COUNTY_NAME</td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="text-left font-weight-bold">Route:</td>
+                <td class="text-center">@Model.ROUTE</td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="text-left font-weight-bold">Milepoint:</td>
+                <td class="text-center">@Model.MILEPOINT</td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="text-left font-weight-bold">Main Road Name:</td>
+                <td class="text-center">@Model.MAIN_ROAD_NAME</td>
+            </tr>
+            <tr class="border-bottom">
+                <td class="text-left font-weight-bold"><div>Geographic<br />Location:</div></td>
+                <td class="text-center">
+                    <div>
+                        @Model.LAT_UTM_Y<br />
+                        @Model.LONG_UTM_X
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+<form method="post" asp-action="Delete" asp-route-crashId="@Model.CRASH_ID">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="Account" asp-action="AdminSummary" class="btn btn-primary">Cancel</a>
+    <input type="hidden" asp-for="CRASH_ID" />
+</form>
