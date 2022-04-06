@@ -2,6 +2,7 @@
 using Intex.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.ML.OnnxRuntime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,6 +20,8 @@ namespace Intex.Controllers
         {
             repo = temp;
         }
+
+
 
         public IActionResult Index()
         {
