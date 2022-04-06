@@ -2,6 +2,7 @@
 using Intex.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.ML.OnnxRuntime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +13,7 @@ namespace Intex.Controllers
 {
     public class HomeController : Controller
     {
-        //uses the repo to make testing easier
+//--------------------------------------------SET UP-------------------------------------------------------------
         private IcrashRepository repo;
 
         public HomeController(IcrashRepository temp)
@@ -20,19 +21,22 @@ namespace Intex.Controllers
             repo = temp;
         }
 
+
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Summary(int pageNum = 1)
+        public IActionResult Summary(int severity, int pageNum = 1)
         {
+//--------------------------------------------PAGINATION-------------------------------------------------------------
             int pageSize = 50;
             int maxPages = 10;
 
             int v = (int)Math.Ceiling((double)(repo.crashes.Count()) / pageSize);
-            int totalPages = v;
 
+            int totalPages = v;
             int startPage, endPage;
             if (totalPages <= maxPages)
             {
@@ -64,24 +68,22 @@ namespace Intex.Controllers
                     endPage = pageNum + maxPagesAfterCurrentPage;
                 }
             }
-
             // calculate start and end item indexes
             var startIndex = (pageNum - 1) * pageSize;
             var endIndex = Math.Min(startIndex + pageSize - 1, pageSize - 1);
-
             // create an array of pages that can be looped over
             var pages = Enumerable.Range(startPage, (endPage + 1) - startPage);
-
             // update object instance with all pager properties required by the view
 
+            //ViewBag.Crash = repo.crashes.ToList();
 
-
-
+//-----------------------------------------SUMMARY DISPLAY-------------------------------------------------------------
             var x = new CrashesViewModel
             {
                 crashes = repo.crashes
                 .OrderByDescending(x => x.CRASH_DATE)
-                .Skip((pageNum = 1) * pageSize)
+                //.Where(x => x.CRASH_SEVERITY_ID == severity)
+                .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo

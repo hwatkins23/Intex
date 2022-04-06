@@ -81,7 +81,7 @@
         <td>@x.DROWSY_DRIVING</td>
         <td>@x.ROADWAY_DEPARTURE</td>*@
             <td><a class="btn btn-warning">Edit</a></td>
-            <td><a class="btn btn-danger">Delete</a></td>
+            <td><a class="btn btn-danger" asp-controller="Account" asp-action="Delete" asp-route-crashId="@x.CRASH_ID">Delete</a></td>
         </tr>
 
         }
