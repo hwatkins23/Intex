@@ -1,0 +1,34 @@
+﻿@page "/admin"
+
+@model Intex.Areas.Identity.Pages.Admin.IndexModel
+
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+ 
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Crashes Admin</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> 
+    <base href="/" />
+</head>
+<body>
+
+    <component type="typeof(Intex.Areas.Identity.Pages.Admin.Routed)" render-mode="Server" />
+    <script src="/_framework/blazor.server.js"></script>
+    
+
+    @*<div class="row p-2">
+        <div class="col-3 d-grid">
+            <Microsoft.AspNetCore.Components.Routing.NavLink class="btn btn-outline-primary" href="/admin/crashes"
+                                                             ActiveClass="btn-primary text-white" Match="Microsoft.AspNetCore.Components.Routing.NavLinkMatch.Prefix">View all Crash Data</Microsoft.AspNetCore.Components.Routing.NavLink>
+        </div>
+    </div>*@
+
+</body>
+</html>

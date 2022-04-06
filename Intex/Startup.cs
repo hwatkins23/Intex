@@ -39,8 +39,10 @@ namespace Intex
 
             //Admin Connections and Security Stuff:
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            {
+                options.UseMySql(
+                    Configuration["ConnectionStrings:ApplicationDbConnection"]);
+            });
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -65,6 +67,7 @@ namespace Intex
             services.AddControllersWithViews();
 
             services.AddRazorPages();
+            services.AddServerSideBlazor();
 
             services.AddScoped<IcrashRepository, EFcrashRepository>();
         }
@@ -99,6 +102,8 @@ namespace Intex
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("admin/(*catchall)", "/Admin/Index");
             });
         }
     }

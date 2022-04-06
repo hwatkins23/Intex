@@ -1,0 +1,32 @@
+﻿@inherits LayoutComponentBase
+
+    <div class="bg-info text-white p-2">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <span class="nav navbar-brand m-lg-2">Crash Administration</span>
+                </div>
+            </div>
+            <div class="col-2 text-right">
+                <a class="btn btn-sm btn-primary" href="/account/logout">Log Out</a>
+            </div>
+
+        </div>
+    </div>
+
+<div class="container-fluid">
+    <div class="row p-2">
+        <div class="col-3 d-grid">
+            <NavLink class="btn btn-outline-primary" href="/admin/crashes"
+                ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">View all Crash Data</NavLink>
+        </div>
+    </div>
+<div class="col">
+    @Body
+</div>
+</div>
+
+@code {
+
+}
