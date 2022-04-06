@@ -1,0 +1,202 @@
+﻿@{
+}
+
+@model crash
+
+<h1>Details for Crash @Model.CRASH_ID</h1>
+<div class="h3">Crash Severity: <div class="text-warning">@Model.CRASH_SEVERITY_ID</div></div>
+
+<div class="row">
+
+    <div class="col-5">
+        <table class="table table-hover">
+            <tbody>
+                <tr class="m-1 border-bottom">
+                    <td class="text-left font-weight-bold">Date:</td>
+                    <td class="text-center">@Model.CRASH_DATE</td>
+                </tr>
+                <tr class="border-bottom">
+                    <td class="text-left font-weight-bold">Time:</td>
+                    <td class="text-center">@Model.TIME @Model.TIME_OF_DAY</td>
+                </tr>
+                <tr class="border-bottom">
+                    <td class="text-left font-weight-bold">City:</td>
+                    <td class="text-center">@Model.CITY</td>
+                </tr>
+                <tr class="border-bottom">
+                    <td class="text-left font-weight-bold">County:</td>
+                    <td class="text-center">@Model.COUNTY_NAME</td>
+                </tr>
+                <tr class="border-bottom">
+                    <td class="text-left font-weight-bold">Route:</td>
+                    <td class="text-center">@Model.ROUTE</td>
+                </tr>
+                <tr class="border-bottom">
+                    <td class="text-left font-weight-bold">Milepoint:</td>
+                    <td class="text-center">@Model.MILEPOINT</td>
+                </tr>
+                <tr class="border-bottom">
+                    <td class="text-left font-weight-bold">Main Road Name:</td>
+                    <td class="text-center">@Model.MAIN_ROAD_NAME</td>
+                </tr>
+                <tr class="border-bottom">
+                    <td class="text-left font-weight-bold"><div>Geographic<br />Location:</div></td>
+                    <td class="text-center">
+                        <div>
+                            @Model.LAT_UTM_Y<br />
+                            @Model.LONG_UTM_X
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="col-7 text-center">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="bg-dark font-weight-bold text-white">Factors</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.WORK_ZONE_RELATED == "TRUE")
+                {
+                    <tr>
+                        <td>Work Zone Related</td>
+                    </tr>
+                }
+
+                @if (Model.PEDESTRIAN_INVOLVED == "TRUE")
+                {
+                    <tr>
+                        <td>Pedestrian Involved</td>
+                    </tr>
+                }
+
+                @if (Model.BICYCLIST_INVOLVED == "TRUE")
+                {
+                    <tr>
+                        <td>Bicyclist Involved</td>
+                    </tr>
+                }
+
+                @if (Model.MOTORCYCLE_INVOLVED == "TRUE")
+                {
+                    <tr>
+                        <td>Motorcycle Involved</td>
+                    </tr>
+                }
+
+                @if (Model.IMPROPER_RESTRAINT == "TRUE")
+                {
+                    <tr>
+                        <td>Improper Restraint</td>
+                    </tr>
+                }
+
+                @if (Model.UNRESTRAINED == "TRUE")
+                {
+                    <tr>
+                        <td>Unrestrained</td>
+                    </tr>
+                }
+
+                @if (Model.DUI == "TRUE")
+                {
+                    <tr>
+                        <td>DUI</td>
+                    </tr>
+                }
+
+                @if (Model.INTERSECTION_RELATED == "TRUE")
+                {
+                    <tr>
+                        <td>Intersection Related</td>
+                    </tr>
+                }
+
+                @if (Model.UNRESTRAINED == "TRUE")
+                {
+                    <tr>
+                        <td>Unrestrained</td>
+                    </tr>
+                }
+
+                @if (Model.WILD_ANIMAL_RELATED == "TRUE")
+                {
+                    <tr>
+                        <td>Wild Animal Related</td>
+                    </tr>
+                }
+
+                @if (Model.DOMESTIC_ANIMAL_RELATED == "TRUE")
+                {
+                    <tr>
+                        <td>Domestic Animal Related</td>
+                    </tr>
+                }
+
+                @if (Model.OVERTURN_ROLLOVER == "TRUE")
+                {
+                    <tr>
+                        <td>Overturn/Rollover</td>
+                    </tr>
+                }
+
+                @if (Model.COMMERCIAL_MOTOR_VEH_INVOLVED == "TRUE")
+                {
+                    <tr>
+                        <td>Commercial Vehicle</td>
+                    </tr>
+                }
+
+                @if (Model.TEENAGE_DRIVER_INVOLVED == "TRUE")
+                {
+                    <tr>
+                        <td>Teenage Driver Involved</td>
+                    </tr>
+                }
+
+                @if (Model.OLDER_DRIVER_INVOLVED == "TRUE")
+                {
+                    <tr>
+                        <td>Older Driver Involved</td>
+                    </tr>
+                }
+
+                @if (Model.NIGHT_DARK_CONDITION == "TRUE")
+                {
+                    <tr>
+                        <td>Night/Dark Conditions</td>
+                    </tr>
+                }
+
+                @if (Model.SINGLE_VEHICLE == "TRUE")
+                {
+                    <tr>
+                        <td>Single Vehicle</td>
+                    </tr>
+                }
+
+                @if (Model.DISTRACTED_DRIVING == "TRUE")
+                {
+                    <tr>
+                        <td>Distracted Driving</td>
+                    </tr>
+                }
+
+                @if (Model.ROADWAY_DEPARTURE == "TRUE")
+                {
+                    <tr>
+                        <td>Roadway Departure</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

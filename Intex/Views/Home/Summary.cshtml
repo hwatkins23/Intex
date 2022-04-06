@@ -47,7 +47,7 @@
         @foreach (var x in Model.crashes)
         {
         <tr>
-            <td>@x.CRASH_ID</td>
+            <td><a asp-controller="Home" asp-action="Details" asp-route-crashID="@x.CRASH_ID">@x.CRASH_ID</a></td>
             <td>@x.CRASH_DATE</td>
             <td>@x.ROUTE</td>
             <td>@x.MILEPOINT</td>
