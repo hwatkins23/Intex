@@ -16,6 +16,7 @@ namespace Intex.Models
 
         public void SaveCrash(crash c)
         {
+            _context.Update(c);
             _context.SaveChanges();
         }
 
