@@ -25,14 +25,14 @@ namespace Intex.Controllers
             return View();
         }
 
-        public IActionResult Summary(int pageNum = 1)
+        public IActionResult Summary(int severity, int pageNum = 1)
         {
             int pageSize = 50;
             int maxPages = 10;
 
             int v = (int)Math.Ceiling((double)(repo.crashes.Count()) / pageSize);
-            int totalPages = v;
 
+            int totalPages = v;
             int startPage, endPage;
             if (totalPages <= maxPages)
             {
@@ -64,23 +64,20 @@ namespace Intex.Controllers
                     endPage = pageNum + maxPagesAfterCurrentPage;
                 }
             }
-
             // calculate start and end item indexes
             var startIndex = (pageNum - 1) * pageSize;
             var endIndex = Math.Min(startIndex + pageSize - 1, pageSize - 1);
-
             // create an array of pages that can be looped over
             var pages = Enumerable.Range(startPage, (endPage + 1) - startPage);
-
             // update object instance with all pager properties required by the view
 
-
-
+            ViewBag.Crash = repo.crashes.ToList();
 
             var x = new CrashesViewModel
             {
                 crashes = repo.crashes
                 .OrderByDescending(x => x.CRASH_DATE)
+                //.Where(x => x.CRASH_SEVERITY_ID == severity)
                 .Skip((pageNum = 1) * pageSize)
                 .Take(pageSize),
 

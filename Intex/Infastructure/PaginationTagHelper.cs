@@ -36,8 +36,8 @@ namespace Intex.Infastructure
             IUrlHelper uh = uhf.GetUrlHelper(vc);
             TagBuilder final = new TagBuilder("div");
 
-
-            for (int i = 1; i < PageTag.TotalPages; i++)
+            for (int i = PageTag.StartPage; i <= PageTag.EndPage && i < PageTag.TotalPages; i++)
+            //for (int i = 1; i < PageTag.TotalPages; i++)
             {
                 TagBuilder tb = new TagBuilder("a");
 
@@ -55,13 +55,6 @@ namespace Intex.Infastructure
                 final.InnerHtml.AppendHtml(tb);
 
             }
-            //foreach (var x in PageTag.Pages)
-            // { 
-            // TagBuilder tb = new TagBuilder("a");
-            //tb.Attributes["href"] = uh.Action(PageAction, x);
-            //tb.InnerHtml.AppendHtml(x.ToString());
-            //final.InnerHtml.AppendHtml(tb);
-            //}
 
             tho.Content.AppendHtml(final.InnerHtml);
         }
