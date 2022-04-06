@@ -17,31 +17,31 @@
             <td>Date</td>
             <td>Route</td>
             @*<td>Milepoint</td>
-            <td>Latitude</td>
-            <td>Longitude</td>*@
+                <td>Latitude</td>
+                <td>Longitude</td>*@
             <td>Main Road</td>
             <td>City</td>
             <td>County</td>
             <td>Severity</td>
             @*<td>Work Zone Related?</td>
-            <td>Pedestrian Involved?</td>
-            <td>Bicyclist Involved?</td>
-            <td>Motorcycle Involved?</td>
-            <td>Improper Restraint?</td>
-            <td>Unrestrained?</td>
-            <td>DUI?</td>
-            <td>Intersection Related?</td>
-            <td>Wild Animal Related?</td>
-            <td>Domestic Animal Related?</td>
-            <td>Overturn Rollover?</td>
-            <td>Commercial Motor Vehicle Involved?</td>
-            <td>Teenage Driver Involved?</td>
-            <td>Older Driver Involved?</td>
-            <td>Night Dark Condition?</td>
-            <td>Single Vehicle?</td>
-            <td>Distracted Driving?</td>
-            <td>Drowsy Driving?</td>
-            <td>Roadway Departure?</td>*@
+                <td>Pedestrian Involved?</td>
+                <td>Bicyclist Involved?</td>
+                <td>Motorcycle Involved?</td>
+                <td>Improper Restraint?</td>
+                <td>Unrestrained?</td>
+                <td>DUI?</td>
+                <td>Intersection Related?</td>
+                <td>Wild Animal Related?</td>
+                <td>Domestic Animal Related?</td>
+                <td>Overturn Rollover?</td>
+                <td>Commercial Motor Vehicle Involved?</td>
+                <td>Teenage Driver Involved?</td>
+                <td>Older Driver Involved?</td>
+                <td>Night Dark Condition?</td>
+                <td>Single Vehicle?</td>
+                <td>Distracted Driving?</td>
+                <td>Drowsy Driving?</td>
+                <td>Roadway Departure?</td>*@
 
         </tr>
     </thead>
@@ -50,37 +50,37 @@
         @foreach (var x in Model.crashes)
         {
 
-        <tr>
-            <td><a asp-controller="Home" asp-action="Details" asp-route-crashID="@x.CRASH_ID">@x.CRASH_ID</a></td>
-            <td>@x.CRASH_DATE</td>
-            <td>@x.ROUTE</td>
-            @*<td>@x.MILEPOINT</td>
-            <td>@x.LAT_UTM_Y</td>
-            <td>@x.LONG_UTM_X</td>*@
-            <td>@x.MAIN_ROAD_NAME</td>
-            <td>@x.CITY</td>
-            <td>@x.COUNTY_NAME</td>
-            <td>@x.CRASH_SEVERITY_ID</td>
-            @*<td>@x.WORK_ZONE_RELATED</td>
-            <td>@x.PEDESTRIAN_INVOLVED</td>
-            <td>@x.BICYCLIST_INVOLVED</td>
-            <td>@x.MOTORCYCLE_INVOLVED</td>
-            <td>@x.IMPROPER_RESTRAINT</td>
-            <td>@x.UNRESTRAINED</td>
-            <td>@x.DUI</td>
-            <td>@x.INTERSECTION_RELATED</td>
-            <td>@x.WILD_ANIMAL_RELATED</td>
-            <td>@x.DOMESTIC_ANIMAL_RELATED</td>
-            <td>@x.OVERTURN_ROLLOVER</td>
-            <td>@x.COMMERCIAL_MOTOR_VEH_INVOLVED</td>
-            <td>@x.TEENAGE_DRIVER_INVOLVED</td>
-            <td>@x.OLDER_DRIVER_INVOLVED</td>
-            <td>@x.NIGHT_DARK_CONDITION</td>
-            <td>@x.SINGLE_VEHICLE</td>
-            <td>@x.DISTRACTED_DRIVING</td>
-            <td>@x.DROWSY_DRIVING</td>
-            <td>@x.ROADWAY_DEPARTURE</td>*@
-        </tr>
+            <tr>
+                <td><a asp-controller="Home" asp-action="Details" asp-route-crashID="@x.CRASH_ID">@x.CRASH_ID</a></td>
+                <td>@x.CRASH_DATE</td>
+                <td>@x.ROUTE</td>
+                @*<td>@x.MILEPOINT</td>
+                    <td>@x.LAT_UTM_Y</td>
+                    <td>@x.LONG_UTM_X</td>*@
+                <td>@x.MAIN_ROAD_NAME</td>
+                <td>@x.CITY</td>
+                <td>@x.COUNTY_NAME</td>
+                <td>@x.CRASH_SEVERITY_ID</td>
+                @*<td>@x.WORK_ZONE_RELATED</td>
+                    <td>@x.PEDESTRIAN_INVOLVED</td>
+                    <td>@x.BICYCLIST_INVOLVED</td>
+                    <td>@x.MOTORCYCLE_INVOLVED</td>
+                    <td>@x.IMPROPER_RESTRAINT</td>
+                    <td>@x.UNRESTRAINED</td>
+                    <td>@x.DUI</td>
+                    <td>@x.INTERSECTION_RELATED</td>
+                    <td>@x.WILD_ANIMAL_RELATED</td>
+                    <td>@x.DOMESTIC_ANIMAL_RELATED</td>
+                    <td>@x.OVERTURN_ROLLOVER</td>
+                    <td>@x.COMMERCIAL_MOTOR_VEH_INVOLVED</td>
+                    <td>@x.TEENAGE_DRIVER_INVOLVED</td>
+                    <td>@x.OLDER_DRIVER_INVOLVED</td>
+                    <td>@x.NIGHT_DARK_CONDITION</td>
+                    <td>@x.SINGLE_VEHICLE</td>
+                    <td>@x.DISTRACTED_DRIVING</td>
+                    <td>@x.DROWSY_DRIVING</td>
+                    <td>@x.ROADWAY_DEPARTURE</td>*@
+            </tr>
 
         }
 
@@ -90,4 +90,10 @@
 
 <br />
 
-<div page-tag="@Model.PageInfo" page-action="Index"></div>
+<div page-tag="@Model.PageInfo"
+     page-action="Index"
+     page-class="btn"
+     page-class-normal="button"
+     page-class-selected="btn-primary"
+     page-classes-enabled="true"
+     class="btn-group pull-right m-1"></div>
