@@ -50,6 +50,27 @@
         @foreach (var x in Model.crashes)
         {
 
+<<<<<<< Updated upstream
+=======
+    <div class="col-2 text-center">
+
+        <h1>Teams</h1>
+
+        <div>
+
+            <a class="btn btn-block btn-outline-primary" asp-controller="Home" asp-action="Index">Home</a>
+
+    
+
+        </div>
+
+    </div>
+
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="font-weight-bold">
+>>>>>>> Stashed changes
             <tr>
                 <td><a asp-controller="Home" asp-action="Details" asp-route-crashID="@x.CRASH_ID">@x.CRASH_ID</a></td>
                 <td>@x.CRASH_DATE</td>
