@@ -111,5 +111,21 @@ namespace Intex.Controllers
             return View(crash);
         }
 
+
+        [HttpGet]
+        public IActionResult Delete (int crashId)
+        {
+            var crash = repo.crashes.Single(x => x.CRASH_ID == crashId);
+            return View(crash);
+        }
+
+        [HttpPost]
+        public IActionResult Delete (crash c)
+        {
+            repo.DeleteCrash(c);
+            return RedirectToAction("AdminSummary");
+            
+            
+        }
     }
 }
