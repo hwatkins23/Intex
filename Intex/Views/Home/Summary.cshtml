@@ -3,6 +3,9 @@
     ViewData["Title"] = "Summary";
 }
 
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
 @model CrashesViewModel
 
 
@@ -46,6 +49,7 @@
     <tbody>
         @foreach (var x in Model.crashes)
         {
+
         <tr>
             <td><a asp-controller="Home" asp-action="Details" asp-route-crashID="@x.CRASH_ID">@x.CRASH_ID</a></td>
             <td>@x.CRASH_DATE</td>
@@ -77,6 +81,7 @@
             <td>@x.DROWSY_DRIVING</td>
             <td>@x.ROADWAY_DEPARTURE</td>
         </tr>
+
         }
 
     </tbody>
@@ -85,5 +90,4 @@
 
 <br />
 
-<a asp-action="Index" asp-route-pageNum="1">1</a>
-<a asp-action="Index" asp-route-pageNum="2">2</a>
+<div page-tag="@Model.PageInfo" page-action="Index"></div>

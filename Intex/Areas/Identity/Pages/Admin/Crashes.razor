@@ -1,4 +1,4 @@
-﻿@page "/admin/crashes"
+@page "/admin/crashes"
 @page "/admin"
 
 @inherits OwningComponentBase<IcrashRepository>
@@ -7,6 +7,7 @@
 
 <h2>Welcome to the administrative view! You have access to edit, delete, and add things to the database!</h2>
 <NavLink class="btn btn-primary" href="/admin/crashes/create">Create</NavLink>
+
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -21,6 +22,7 @@
     </thead>
     <tbody>
         @if (CrashData?.Count() > 0)
+
         {
             @foreach (crash c in CrashData)
             {

@@ -27,12 +27,60 @@ namespace Intex.Controllers
 
         public IActionResult Summary(int pageNum = 1)
         {
-            int pageSize = 100;
+            int pageSize = 50;
+            int maxPages = 10;
+
+            int v = (int)Math.Ceiling((double)(repo.crashes.Count()) / pageSize);
+            int totalPages = v;
+
+            int startPage, endPage;
+            if (totalPages <= maxPages)
+            {
+                // total pages less than max so show all pages
+                startPage = 1;
+                endPage = totalPages;
+            }
+            else
+            {
+                // total pages more than max so calculate start and end pages
+                var maxPagesBeforeCurrentPage = (int)Math.Floor((decimal)maxPages / (decimal)2);
+                var maxPagesAfterCurrentPage = (int)Math.Ceiling((decimal)maxPages / (decimal)2) - 1;
+                if (pageNum <= maxPagesBeforeCurrentPage)
+                {
+                    // current page near the start
+                    startPage = 1;
+                    endPage = maxPages;
+                }
+                else if (pageNum + maxPagesAfterCurrentPage >= totalPages)
+                {
+                    // current page near the end
+                    startPage = totalPages - maxPages + 1;
+                    endPage = totalPages;
+                }
+                else
+                {
+                    // current page somewhere in the middle
+                    startPage = pageNum - maxPagesBeforeCurrentPage;
+                    endPage = pageNum + maxPagesAfterCurrentPage;
+                }
+            }
+
+            // calculate start and end item indexes
+            var startIndex = (pageNum - 1) * pageSize;
+            var endIndex = Math.Min(startIndex + pageSize - 1, pageSize - 1);
+
+            // create an array of pages that can be looped over
+            var pages = Enumerable.Range(startPage, (endPage + 1) - startPage);
+
+            // update object instance with all pager properties required by the view
+
+
+
 
             var x = new CrashesViewModel
             {
                 crashes = repo.crashes
-                .OrderBy(x => x.CRASH_DATE)
+                .OrderByDescending(x => x.CRASH_DATE)
                 .Skip((pageNum = 1) * pageSize)
                 .Take(pageSize),
 
@@ -40,11 +88,18 @@ namespace Intex.Controllers
                 {
                     TotalNumCrashes = repo.crashes.Count(),
                     CrashesPerPage = pageSize,
-                    CurrentPage = pageNum
-                }
-        };
+                    CurrentPage = pageNum,
 
-            return View(x);
+                    StartPage = startPage,
+                    EndPage = endPage,
+                    StartIndex = startIndex,
+                    EndIndex = endIndex,
+                    Pages = pages,
+
+                }
+            };
+
+                return View(x);
         }
 
         [HttpGet]
