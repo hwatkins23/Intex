@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Intex.Models.ViewModels
 {
     public class PageInfo
@@ -6,8 +8,13 @@ namespace Intex.Models.ViewModels
         public int TotalNumCrashes { get; set; }
         public int CrashesPerPage { get; set; }
         public int CurrentPage { get; set; }
-        public int MaxPages { get; set; }
+        public int StartPage { get; set; }
+        public int EndPage { get; set; }
+        public int StartIndex{ get; set; }
+        public int EndIndex { get; set; }
+        public IEnumerable<int> Pages { get; set; }
 
         public int TotalPages => (int)Math.Ceiling((double)TotalNumCrashes / CrashesPerPage);
+        
     }
 }
