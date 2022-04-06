@@ -24,7 +24,6 @@
     <None Remove="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\img\" />
     <Folder Include="Infastructure\" />
     <Folder Include="Models\ViewModels\" />
   </ItemGroup>
