@@ -111,5 +111,47 @@ namespace Intex.Controllers
             return View(crash);
         }
 
+        [HttpGet]
+        public IActionResult AddAccident()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddAccident(crash c)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            c.CRASH_ID = repo.crashes.Max(x => x.CRASH_ID) + 1;
+
+            repo.AddCrash(c);
+            return View("AdminDetails", c);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int crashID)
+        {
+            var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
+
+            //ViewBag.ID = crash.CRASH_ID;
+
+            return View("AddAccident", crash);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(crash c)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            repo.SaveCrash(c);
+            return View("AdminDetails", c);
+        }
+
     }
 }
