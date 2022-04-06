@@ -39,8 +39,10 @@ namespace Intex
 
             //Admin Connections and Security Stuff:
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            {
+                options.UseMySql(
+                    Configuration["ConnectionStrings:ApplicationDbConnection"]);
+            });
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
