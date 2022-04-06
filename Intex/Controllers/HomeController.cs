@@ -102,6 +102,14 @@ namespace Intex.Controllers
                 return View(x);
         }
 
+        [HttpGet]
+        public IActionResult Details(int crashID)
+        {
+            var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
+
+            return View(crash);
+        }
+
         public IActionResult Privacy()
         {
             return View();
