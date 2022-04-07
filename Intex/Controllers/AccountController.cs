@@ -121,6 +121,7 @@ namespace Intex.Controllers
 
         public IActionResult AddAccident()
         {
+            ViewBag.CrashID = (repo.crashes.Max(c => c.CRASH_ID)) + 1;
             return View();
         }
 
@@ -132,7 +133,7 @@ namespace Intex.Controllers
                 return View();
             }
 
-            c.CRASH_ID = (repo.crashes.Max(c => c.CRASH_ID)) + 1;
+            //c.CRASH_ID = (repo.crashes.Max(c => c.CRASH_ID)) + 1;
 
             repo.AddCrash(c);
             return View("AdminDetails", c);
@@ -145,6 +146,8 @@ namespace Intex.Controllers
 
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
 
+            ViewBag.CrashID = crash.CRASH_ID;
+
             return View("AddAccident", crash);
         }
 
@@ -153,7 +156,7 @@ namespace Intex.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View("AddAccident");
             }
            
             repo.SaveCrash(c);
