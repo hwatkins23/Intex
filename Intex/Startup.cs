@@ -104,8 +104,28 @@ namespace Intex
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "CountySeverityPage",
+                    pattern: "County{countyName}/Severity{severity}/Page{pageNum}");
+                
+                endpoints.MapControllerRoute(
+                    name: "SeverityPage",
+                    pattern: "Severity{severity}/Page{pageNum}",
+                    defaults: new {Controller = "Home", action = "Summary"});
+
+                endpoints.MapControllerRoute(
+                    name: "Severity",
+                    pattern: "Severity{severity}",
+                    defaults: new { Controller = "Home", action = "Summary", pageNum = 1});
+                
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Summary"});
+                
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("admin/(*catchall)", "/Admin/Index");
