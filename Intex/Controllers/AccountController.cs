@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Intex.Controllers
 {
-    //[Authorize]
+//--------------------------------------------AUTHORIZATION-------------------------------------------------------------
     public class AccountController : Controller
     {
         //uses the repo to make testing easier
@@ -26,8 +26,11 @@ namespace Intex.Controllers
             return View();
         }
 
+//--------------------------------------------SUMMMARY FOR ADMIN-------------------------------------------------------------
         public IActionResult AdminSummary(int pageNum = 1)
         {
+
+//--------------------------------------------PAGINATION---------------------------------------------------------------------
             int pageSize = 50;
             int maxPages = 10;
 
@@ -77,11 +80,11 @@ namespace Intex.Controllers
 
 
 
-
+//--------------------------------------------PASS DATA-------------------------------------------------------------
             var x = new CrashesViewModel
             {
                 crashes = repo.crashes
-                .OrderByDescending(x => x.CRASH_DATE)
+                .OrderByDescending(x => x.CRASH_ID)
                 .Skip((pageNum = 1) * pageSize)
                 .Take(pageSize),
 
@@ -103,6 +106,7 @@ namespace Intex.Controllers
             return View(x);
         }
 
+//--------------------------------------------DETAILS PAGE-------------------------------------------------------------
         [HttpGet]
         public IActionResult AdminDetails(int crashID)
         {
@@ -112,7 +116,9 @@ namespace Intex.Controllers
         }
 
 
+//--------------------------------------------ADD-------------------------------------------------------------
         [HttpGet]
+
         public IActionResult AddAccident()
         {
             return View();
@@ -126,18 +132,18 @@ namespace Intex.Controllers
                 return View();
             }
 
-            c.CRASH_ID = repo.crashes.Max(x => x.CRASH_ID) + 1;
+            c.CRASH_ID = (repo.crashes.Max(c => c.CRASH_ID)) + 1;
 
             repo.AddCrash(c);
             return View("AdminDetails", c);
         }
 
+//--------------------------------------------EDIT-------------------------------------------------------------
         [HttpGet]
         public IActionResult Edit(int crashID)
         {
-            var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
 
-            //ViewBag.ID = crash.CRASH_ID;
+            var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
 
             return View("AddAccident", crash);
         }
@@ -151,12 +157,13 @@ namespace Intex.Controllers
             }
 
             repo.SaveCrash(c);
-            return View("AdminDetails", c);
+            return RedirectToAction("AdminSummary", c);
         }
 
 
-
+//--------------------------------------------DELETE-------------------------------------------------------------
         [HttpGet]
+
         public IActionResult Delete (int crashId)
         {
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashId);

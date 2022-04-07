@@ -8,6 +8,9 @@
 
 @model CrashesViewModel
 
+<div class="text-center">
+    <a asp-controller="Account" asp-action="AddAccident" class="btn btn-primary">Add Accident</a>
+</div>
 
 <table class="table table-bordered table-hover">
 
@@ -80,7 +83,7 @@
         <td>@x.DISTRACTED_DRIVING</td>
         <td>@x.DROWSY_DRIVING</td>
         <td>@x.ROADWAY_DEPARTURE</td>*@
-            <td><a class="btn btn-warning">Edit</a></td>
+            <td><a class="btn btn-warning" asp-controller="Account" asp-action="Edit" asp-route-crashId="@x.CRASH_ID">Edit</a></td>
             <td><a class="btn btn-danger" asp-controller="Account" asp-action="Delete" asp-route-crashId="@x.CRASH_ID">Delete</a></td>
         </tr>
 
@@ -92,4 +95,10 @@
 
 <br />
 
-<div page-tag="@Model.PageInfo" page-action="Index"></div>
+<div page-tag="@Model.PageInfo"
+     page-action="Summary"
+     page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     page-classes-enabled="true"
+     class="btn-group pull-right m-1"></div>

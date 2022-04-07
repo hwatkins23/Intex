@@ -131,6 +131,7 @@ namespace Intex.Controllers
                 return View(x);
         }
 
+//--------------------------------------------Details Page-------------------------------------------------------------
         [HttpGet]
         public IActionResult Details(int crashID)
         {
@@ -139,6 +140,8 @@ namespace Intex.Controllers
             return View(crash);
         }
 
+
+//--------------------------------------------PRIVACY POLICY-------------------------------------------------------------
         public IActionResult Privacy()
         {
             return View();

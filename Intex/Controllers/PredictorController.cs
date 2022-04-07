@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Intex.Models;
 using Microsoft.ML.OnnxRuntime.Tensors;
 
+
+//--------------------------------------------PREDICTOR-------------------------------------------------------------
+
 namespace Intex.Controllers
 {
     public class PredictorController : Controller
