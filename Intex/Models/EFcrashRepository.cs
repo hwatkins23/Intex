@@ -5,31 +5,36 @@ namespace Intex.Models
 {
     public class EFcrashRepository : IcrashRepository
     {
-        private crashDbContext _context { get; set; }
+        private crashDbContext context { get; set; }
 
         public EFcrashRepository(crashDbContext temp)
         {
-            _context = temp;
+            context = temp;
         }
 
-        public IQueryable<crash> crashes => _context.crashes;
+        public IQueryable<crash> crashes => context.crashes;
 
         public void SaveCrash(crash c)
         {
+<<<<<<< Updated upstream
             _context.SaveChanges();
+=======
+            context.Update(c);
+            context.SaveChanges();
+>>>>>>> Stashed changes
         }
 
         public void AddCrash(crash c)
         {
-            _context.Add(c);
-            _context.SaveChanges();
+            context.Add(c);
+            context.SaveChanges();
         }
 
 
         public void DeleteCrash(crash c)
         {
-            _context.Remove(c);
-            _context.SaveChanges();
+            context.Remove(c);
+            context.SaveChanges();
         }
     }
 }

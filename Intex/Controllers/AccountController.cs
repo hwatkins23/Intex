@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Intex.Controllers
 {
-    //[Authorize]
+//--------------------------------------------AUTHORIZATION-------------------------------------------------------------
     public class AccountController : Controller
     {
         //uses the repo to make testing easier
@@ -26,8 +26,11 @@ namespace Intex.Controllers
             return View();
         }
 
+//--------------------------------------------SUMMMARY FOR ADMIN-------------------------------------------------------------
         public IActionResult AdminSummary(int pageNum = 1)
         {
+
+//--------------------------------------------PAGINATION---------------------------------------------------------------------
             int pageSize = 50;
             int maxPages = 10;
 
@@ -77,11 +80,11 @@ namespace Intex.Controllers
 
 
 
-
+//--------------------------------------------PASS DATA-------------------------------------------------------------
             var x = new CrashesViewModel
             {
                 crashes = repo.crashes
-                .OrderByDescending(x => x.CRASH_DATE)
+                .OrderByDescending(x => x.CRASH_ID)
                 .Skip((pageNum = 1) * pageSize)
                 .Take(pageSize),
 
@@ -103,6 +106,7 @@ namespace Intex.Controllers
             return View(x);
         }
 
+//--------------------------------------------DETAILS PAGE-------------------------------------------------------------
         [HttpGet]
         public IActionResult AdminDetails(int crashID)
         {
@@ -112,7 +116,55 @@ namespace Intex.Controllers
         }
 
 
+//--------------------------------------------ADD-------------------------------------------------------------
         [HttpGet]
+<<<<<<< Updated upstream
+=======
+        public IActionResult AddAccident()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddAccident(crash c)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            c.CRASH_ID = (repo.crashes.Max(c => c.CRASH_ID)) + 1;
+
+            repo.AddCrash(c);
+            return View("AdminDetails", c);
+        }
+
+//--------------------------------------------EDIT-------------------------------------------------------------
+        [HttpGet]
+        public IActionResult Edit(int crashID)
+        {
+
+            var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
+
+            return View("AddAccident", crash);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(crash c)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            repo.SaveCrash(c);
+            return RedirectToAction("AdminSummary", c);
+        }
+
+
+//--------------------------------------------DELETE-------------------------------------------------------------
+        [HttpGet]
+>>>>>>> Stashed changes
         public IActionResult Delete (int crashId)
         {
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashId);
