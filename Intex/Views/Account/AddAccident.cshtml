@@ -56,201 +56,188 @@
 
                 </div>
 
-                <div class="col-6 text-center">
+
+        
+
+                <div class="col-6 ">
                     <table>
                         <thead>
                             <tr>
-                                <th class="bg-dark font-weight-bold text-white" colspan="2">Factors</th>
+                                <th class="bg-dark font-weight-bold text-white text-center" colspan="2">Factors</th>
                             </tr>
                         </thead>
                         <tbody>
+
                             <tr>
-                                <td><label asp-for="WORK_ZONE_RELATED">Work Zone Related</label></td>
                                 <td>
-                                    <select asp-for="WORK_ZONE_RELATED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label asp-for="PEDESTRIAN_INVOLVED">Pedestrian Involved</label></td>
-                                <td>
-                                    <select asp-for="PEDESTRIAN_INVOLVED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label asp-for="BICYCLIST_INVOLVED">Bicyclist Involved</label></td>
-                                <td>
-                                    <select asp-for="BICYCLIST_INVOLVED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="WORK_ZONE_RELATED">
+                                        <label asp-for="WORK_ZONE_RELATED" class="custom-control-label">Work Zone Related</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="MOTORCYCLE_INVOLVED">Motorcycle Involved</label></td>
                                 <td>
-                                    <select asp-for="MOTORCYCLE_INVOLVED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="PEDESTRIAN_INVOLVED">
+                                        <label asp-for="PEDESTRIAN_INVOLVED" class="custom-control-label">Pedestrian Involved</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="IMPROPER_RESTRAINT">Improper Restraint</label></td>
                                 <td>
-                                    <select asp-for="IMPROPER_RESTRAINT">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="BICYCLIST_INVOLVED">
+                                        <label asp-for="BICYCLIST_INVOLVED" class="custom-control-label">Bicyclist Involved</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="MOTORCYCLE_INVOLVED">
+                                        <label asp-for="MOTORCYCLE_INVOLVED" class="custom-control-label">Motorcycle Involved</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="IMPROPER_RESTRAINT">
+                                        <label asp-for="IMPROPER_RESTRAINT" class="custom-control-label">Improper Restraint</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="UNRESTRAINED">Unrestrained</label></td>
                                 <td>
-                                    <select asp-for="UNRESTRAINED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="UNRESTRAINED">
+                                        <label asp-for="UNRESTRAINED" class="custom-control-label">Unrestrained</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="DUI">DUI</label></td>
                                 <td>
-                                    <select asp-for="DUI">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="DUI">
+                                        <label asp-for="DUI" class="custom-control-label">DUI</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="INTERSECTION_RELATED">Intersection Related</label></td>
                                 <td>
-                                    <select asp-for="INTERSECTION_RELATED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="INTERSECTION_RELATED">
+                                        <label asp-for="INTERSECTION_RELATED" class="custom-control-label">Intersection Related</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="WILD_ANIMAL_RELATED">Wild Animal Related</label></td>
                                 <td>
-                                    <select asp-for="WILD_ANIMAL_RELATED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="WILD_ANIMAL_RELATED">
+                                        <label asp-for="WILD_ANIMAL_RELATED" class="custom-control-label">Wild Animal Related</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="DOMESTIC_ANIMAL_RELATED">Domestic Animal Related</label></td>
                                 <td>
-                                    <select asp-for="DOMESTIC_ANIMAL_RELATED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="DOMESTIC_ANIMAL_RELATED">
+                                        <label asp-for="DOMESTIC_ANIMAL_RELATED" class="custom-control-label">Domestic Animal Related</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="OVERTURN_ROLLOVER">Overturn/Rollover</label></td>
                                 <td>
-                                    <select asp-for="OVERTURN_ROLLOVER">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="OVERTURN_ROLLOVER">
+                                        <label asp-for="OVERTURN_ROLLOVER" class="custom-control-label">Overturn Rollover</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="COMMERCIAL_MOTOR_VEH_INVOLVED">Commercial Vehicle Involved</label></td>
                                 <td>
-                                    <select asp-for="COMMERCIAL_MOTOR_VEH_INVOLVED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="COMMERCIAL_MOTOR_VEH_INVOLVED">
+                                        <label asp-for="COMMERCIAL_MOTOR_VEH_INVOLVED" class="custom-control-label">Commercial Vehicle Involved</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="TEENAGE_DRIVER_INVOLVED">Teenage Driver Involved</label></td>
                                 <td>
-                                    <select asp-for="TEENAGE_DRIVER_INVOLVED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="TEENAGE_DRIVER_INVOLVED">
+                                        <label asp-for="TEENAGE_DRIVER_INVOLVED" class="custom-control-label">Teenage Driver Involved</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="OLDER_DRIVER_INVOLVED">Older Driver Involved</label></td>
                                 <td>
-                                    <select asp-for="OLDER_DRIVER_INVOLVED">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="OLDER_DRIVER_INVOLVED">
+                                        <label asp-for="OLDER_DRIVER_INVOLVED" class="custom-control-label">Older Driver Involved</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="NIGHT_DARK_CONDITION">Night/Dark Conditions</label></td>
                                 <td>
-                                    <select asp-for="NIGHT_DARK_CONDITION">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="NIGHT_DARK_CONDITION">
+                                        <label asp-for="NIGHT_DARK_CONDITION" class="custom-control-label">Night/Dark Conditions</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="SINGLE_VEHICLE">Single Vehicle</label></td>
                                 <td>
-                                    <select asp-for="SINGLE_VEHICLE">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="SINGLE_VEHICLE">
+                                        <label asp-for="SINGLE_VEHICLE" class="custom-control-label">Single Vehicle</label>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="DISTRACTED_DRIVING">
+                                        <label asp-for="DISTRACTED_DRIVING" class="custom-control-label">Distracted Driving</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="DISTRACTED_DRIVING">Distracted Driving</label></td>
                                 <td>
-                                    <select asp-for="DISTRACTED_DRIVING">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="DROWSY_DRIVING">
+                                        <label asp-for="DROWSY_DRIVING" class="custom-control-label">Drowsy Driving</label>
+                                    </div>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td><label asp-for="DROWSY_DRIVING">Drowsy Driving</label></td>
                                 <td>
-                                    <select asp-for="DROWSY_DRIVING">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" asp-for="ROADWAY_DEPARTURE">
+                                        <label asp-for="ROADWAY_DEPARTURE" class="custom-control-label">Roadway Departure</label>
+                                    </div>
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td><label asp-for="ROADWAY_DEPARTURE">Roadway Departure</label></td>
-                                <td>
-                                    <select asp-for="ROADWAY_DEPARTURE">
-                                        <option value="FALSE">No</option>
-                                        <option value="TRUE">Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <button type="submit" class="btn btn-primary">Save</button>
