@@ -13,7 +13,7 @@
 
     <form method="post">
         <div class="row m-2 p-2">
-            <div class="col-6 justify-content-end h4">
+            <div class="col-6 justify-content-end h5">
                 <div asp-validation-summary="All"></div>
 
                 <div class="form-group">
@@ -64,7 +64,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6 justify-content-end h4">
+            <div class="col-6 justify-content-end h5">
                 <div class="form-group">
                     <label asp-for="IntersectionRelated">Was the Accident at an Intersection</label>
                     <select asp-for="IntersectionRelated">
@@ -136,7 +136,11 @@
 
 </div>
 <br />
-
+<p class="h6">
+    Use this Predictor to predict crash severity scores that depend on key features. You can compare predicted severity 
+    scores with trend data presented below using Tableau.
+</p>
+<br />
 <h2 class="text-center font-weight-bold">Tableau Data Visualizations</h2>
 
 <div class="row">
@@ -148,7 +152,7 @@
 </div>
 <br />
 
-<p>
+<p class="h6">
     This data set is from The Crash Studies Team at UDOT's Traffic & Safety Division maintains a detailed
     database of all crashes on public roadways in Utah. The data is used to report safety trends, identify
     potential safety improvement projects, and allocate limited funding to projects that will have the greatest
