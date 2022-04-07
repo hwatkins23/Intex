@@ -1,6 +1,7 @@
 ﻿using Intex.Models;
 using Intex.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.ML.OnnxRuntime;
 using System;
@@ -28,11 +29,12 @@ namespace Intex.Controllers
             return View();
         }
 
-        public IActionResult Summary(int severity, string countyName, int pageNum = 1)
+        public IActionResult Summary(int severity, string countyName, string searchString, int pageNum = 1)
         {
 
             ViewBag.Counties = repo.crashes.Select(x => x.COUNTY_NAME).Distinct().OrderBy(x => x).ToList();
             ViewBag.CountyName = countyName;
+
 
 //--------------------------------------------PAGINATION-------------------------------------------------------------
             int pageSize = 50;
@@ -99,20 +101,37 @@ namespace Intex.Controllers
                 numRecords = repo.crashes.Where(x => x.COUNTY_NAME == countyName).Where(x => x.CRASH_SEVERITY_ID == severity).Count();
             }
 
+            ViewBag.CityName = searchString;
+
+            IQueryable<string> countyQuery = from c in repo.crashes orderby c.COUNTY_NAME select c.COUNTY_NAME;
+
+            var crashes = from c in repo.crashes select c;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                crashes = crashes.Where(x => x.CITY.Contains(searchString));
+            }
+            if (!string.IsNullOrEmpty(countyName))
+            {
+                crashes = crashes.Where(x => x.COUNTY_NAME == countyName);
+            }
+            else
+            {
+                crashes = repo.crashes
+                    .OrderByDescending(x => x.CRASH_ID)
+                    .Where(x => x.CRASH_SEVERITY_ID == severity || severity == 0).Where(x => x.COUNTY_NAME == countyName || countyName == null)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize);
+            }
+
             //-----------------------------------------SUMMARY DISPLAY-------------------------------------------------------------
             var x = new CrashesViewModel
             {
-                crashes = repo.crashes
-                .OrderByDescending(x => x.CRASH_ID)
-                .Where(x => x.CRASH_SEVERITY_ID == severity || severity == 0).Where(x => x.COUNTY_NAME == countyName || countyName == null)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
-
-
+                crashes = crashes,
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumCrashes = numRecords,
+                    TotalNumCrashes = crashes.Count(),
                     
                     //(severity == 0
                     //        ? repo.crashes.Count()
