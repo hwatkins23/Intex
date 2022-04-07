@@ -28,8 +28,10 @@ namespace Intex.Controllers
             return View();
         }
 
-        public IActionResult Summary(int severity, int pageNum = 1)
+        public IActionResult Summary(int severity, string countyName, int pageNum = 1)
         {
+
+            ViewBag.Counties = repo.crashes.Select(x => x.COUNTY_NAME).Distinct().OrderBy(x => x).ToList();
 //--------------------------------------------PAGINATION-------------------------------------------------------------
             int pageSize = 50;
             int maxPages = 10;
@@ -75,20 +77,45 @@ namespace Intex.Controllers
             var pages = Enumerable.Range(startPage, (endPage + 1) - startPage);
             // update object instance with all pager properties required by the view
 
-            //ViewBag.Crash = repo.crashes.ToList();
+            ViewBag.Crash = severity;
+            int numRecords = 0;
 
-//-----------------------------------------SUMMARY DISPLAY-------------------------------------------------------------
+            if (severity == 0 && countyName == null)
+            {
+                numRecords = repo.crashes.Count();
+            }
+            else if (severity != 0 && countyName == null)
+            {
+                numRecords = repo.crashes.Where(x => x.CRASH_SEVERITY_ID == severity).Count();
+            }
+            else if (severity == 0 && countyName != null)
+            {
+                numRecords = repo.crashes.Where(x => x.COUNTY_NAME == countyName).Count();
+            }
+            else if (severity != 0 && countyName != null)
+            {
+                numRecords = repo.crashes.Where(x => x.COUNTY_NAME == countyName).Where(x => x.CRASH_SEVERITY_ID == severity).Count();
+            }
+
+            //-----------------------------------------SUMMARY DISPLAY-------------------------------------------------------------
             var x = new CrashesViewModel
             {
                 crashes = repo.crashes
                 .OrderByDescending(x => x.CRASH_DATE)
-                //.Where(x => x.CRASH_SEVERITY_ID == severity)
+                .Where(x => x.CRASH_SEVERITY_ID == severity || severity == 0).Where(x => x.COUNTY_NAME == countyName || countyName == null)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
+
+
                 PageInfo = new PageInfo
                 {
-                    TotalNumCrashes = repo.crashes.Count(),
+                    TotalNumCrashes = numRecords,
+                    
+                    //(severity == 0
+                    //        ? repo.crashes.Count()
+                    //        : repo.crashes.Where(x => x.CRASH_SEVERITY_ID == severity).Count()),
+
                     CrashesPerPage = pageSize,
                     CurrentPage = pageNum,
 

@@ -27,7 +27,7 @@ namespace Intex.Infastructure
         public string PageAction { get; set; }
         public string PageClass { get; set; }
 
-        public bool PageClassesEnabled { get; set; }
+        public bool PageClassesEnabled { get; set; } = false;
         public string PageClassNormal { get; set; }
         public string PageClassSelected { get; set; }
 
