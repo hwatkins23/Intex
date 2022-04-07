@@ -35,7 +35,7 @@ namespace Intex.Controllers
             ViewBag.CountyName = countyName;
 
 //--------------------------------------------PAGINATION-------------------------------------------------------------
-            int pageSize = 50;
+            int pageSize = 30;
             int maxPages = 10;
 
             int v = (int)Math.Ceiling((double)(repo.crashes.Count()) / pageSize);
