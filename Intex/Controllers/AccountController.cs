@@ -157,7 +157,7 @@ namespace Intex.Controllers
             }
            
             repo.SaveCrash(c);
-            return RedirectToAction("AdminSummary", c);
+            return RedirectToAction("AdminDetail", c);
         }
 
 

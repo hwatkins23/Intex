@@ -32,6 +32,7 @@ namespace Intex.Controllers
         {
 
             ViewBag.Counties = repo.crashes.Select(x => x.COUNTY_NAME).Distinct().OrderBy(x => x).ToList();
+            ViewBag.CountyName = countyName;
 
 //--------------------------------------------PAGINATION-------------------------------------------------------------
             int pageSize = 50;

@@ -105,7 +105,7 @@ namespace Intex
             {
                 endpoints.MapControllerRoute(
                     name: "CountySeverityPage",
-                    pattern: "County{countyName}/Severity{severity}/Page{pageNum}");
+                    pattern: "Severity{severity}/Page{pageNum}/County{countyName}");
                 
                 endpoints.MapControllerRoute(
                     name: "SeverityPage",
@@ -121,6 +121,7 @@ namespace Intex
                     name: "Paging",
                     pattern: "Page{pageNum}",
                     defaults: new { Controller = "Home", action = "Summary"});
+
                 
                 endpoints.MapControllerRoute(
                     name: "default",
