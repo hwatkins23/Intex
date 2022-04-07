@@ -111,37 +111,42 @@
                 @foreach (var x in Model.crashes)
                 {
 
-                    <tr>
-                        <td><a asp-controller="Home" asp-action="Details" asp-route-crashID="@x.CRASH_ID">@x.CRASH_ID</a></td>
-                        <td>@x.CRASH_DATE</td>
-                        <td>@x.ROUTE</td>
-                        @*<td>@x.MILEPOINT</td>
-                        <td>@x.LAT_UTM_Y</td>
-                        <td>@x.LONG_UTM_X</td>*@
-                        <td>@x.MAIN_ROAD_NAME</td>
-                        <td>@x.CITY</td>
-                        <td>@x.COUNTY_NAME</td>
-                        <td>@x.CRASH_SEVERITY_ID</td>
-                        @*<td>@x.WORK_ZONE_RELATED</td>
-                        <td>@x.PEDESTRIAN_INVOLVED</td>
-                        <td>@x.BICYCLIST_INVOLVED</td>
-                        <td>@x.MOTORCYCLE_INVOLVED</td>
-                        <td>@x.IMPROPER_RESTRAINT</td>
-                        <td>@x.UNRESTRAINED</td>
-                        <td>@x.DUI</td>
-                        <td>@x.INTERSECTION_RELATED</td>
-                        <td>@x.WILD_ANIMAL_RELATED</td>
-                        <td>@x.DOMESTIC_ANIMAL_RELATED</td>
-                        <td>@x.OVERTURN_ROLLOVER</td>
-                        <td>@x.COMMERCIAL_MOTOR_VEH_INVOLVED</td>
-                        <td>@x.TEENAGE_DRIVER_INVOLVED</td>
-                        <td>@x.OLDER_DRIVER_INVOLVED</td>
-                        <td>@x.NIGHT_DARK_CONDITION</td>
-                        <td>@x.SINGLE_VEHICLE</td>
-                        <td>@x.DISTRACTED_DRIVING</td>
-                        <td>@x.DROWSY_DRIVING</td>
-                        <td>@x.ROADWAY_DEPARTURE</td>*@
-                    </tr>
+                <tr>
+                    <td><a asp-controller="Home" asp-action="Details" asp-route-crashID="@x.CRASH_ID">@x.CRASH_ID</a></td>
+                    <td>@x.CRASH_DATE</td>
+                    <td>@x.ROUTE</td>
+                    @*<td>@x.MILEPOINT</td>
+        <td>@x.LAT_UTM_Y</td>
+        <td>@x.LONG_UTM_X</td>*@
+                    <td>@x.MAIN_ROAD_NAME</td>
+                    <td>@x.CITY</td>
+                    <td>@x.COUNTY_NAME</td>
+                    <td>@x.CRASH_SEVERITY_ID</td>
+                    @*<td>@x.WORK_ZONE_RELATED</td>
+        <td>@x.PEDESTRIAN_INVOLVED</td>
+        <td>@x.BICYCLIST_INVOLVED</td>
+        <td>@x.MOTORCYCLE_INVOLVED</td>
+        <td>@x.IMPROPER_RESTRAINT</td>
+        <td>@x.UNRESTRAINED</td>
+        <td>@x.DUI</td>
+        <td>@x.INTERSECTION_RELATED</td>
+        <td>@x.WILD_ANIMAL_RELATED</td>
+        <td>@x.DOMESTIC_ANIMAL_RELATED</td>
+        <td>@x.OVERTURN_ROLLOVER</td>
+        <td>@x.COMMERCIAL_MOTOR_VEH_INVOLVED</td>
+        <td>@x.TEENAGE_DRIVER_INVOLVED</td>
+        <td>@x.OLDER_DRIVER_INVOLVED</td>
+        <td>@x.NIGHT_DARK_CONDITION</td>
+        <td>@x.SINGLE_VEHICLE</td>
+        <td>@x.DISTRACTED_DRIVING</td>
+        <td>@x.DROWSY_DRIVING</td>
+        <td>@x.ROADWAY_DEPARTURE</td>*@
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <td><a class="btn btn-warning" asp-controller="Account" asp-action="Edit" asp-route-crashId="@x.CRASH_ID">Edit</a></td>
+                        <td><a class="btn btn-danger" asp-controller="Account" asp-action="Delete" asp-route-crashId="@x.CRASH_ID">Delete</a></td>
+                    }
+                </tr>
 
                 }
 
