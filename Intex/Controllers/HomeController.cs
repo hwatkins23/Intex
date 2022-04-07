@@ -148,6 +148,5 @@ namespace Intex.Controllers
         {
             return View();
         }
-
     }
 }

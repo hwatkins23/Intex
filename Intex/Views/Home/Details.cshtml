@@ -197,7 +197,14 @@
 
             </tbody>
         </table>
-        
+
+        @if (User.Identity.IsAuthenticated)
+        {
+        <a asp-controller="Account" asp-action="Edit" asp-route-crashID="@Model.CRASH_ID" class="btn btn-warning">Edit</a>
+
+        <a class="btn btn-danger" asp-controller="Account" asp-action="Delete" asp-route-crashId="@Model.CRASH_ID">Delete</a>
+        }
+
     </div>
 
 </div>
