@@ -121,6 +121,7 @@ namespace Intex
                     name: "Paging",
                     pattern: "Page{pageNum}",
                     defaults: new { Controller = "Home", action = "Summary"});
+
                 
                 endpoints.MapControllerRoute(
                     name: "default",
