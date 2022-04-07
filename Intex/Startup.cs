@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.ML.OnnxRuntime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,10 @@ namespace Intex
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("crash_model.onnx")
+                );
+
             services.AddControllersWithViews();
 
             services.AddRazorPages();
@@ -99,8 +104,29 @@ namespace Intex
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "CountySeverityPage",
+                    pattern: "County{countyName}/Severity{severity}/Page{pageNum}");
+                
+                endpoints.MapControllerRoute(
+                    name: "SeverityPage",
+                    pattern: "Severity{severity}/Page{pageNum}",
+                    defaults: new {Controller = "Home", action = "Summary"});
+
+                endpoints.MapControllerRoute(
+                    name: "Severity",
+                    pattern: "Severity{severity}",
+                    defaults: new { Controller = "Home", action = "Summary", pageNum = 1});
+                
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Summary"});
+                
+                endpoints.MapControllerRoute(
                     name: "default",
+
                     pattern: "{controller=Home}/{action=Index}/{crashId?}");
+
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("admin/(*catchall)", "/Admin/Index");

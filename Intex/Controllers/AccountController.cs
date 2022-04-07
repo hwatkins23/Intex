@@ -118,8 +118,7 @@ namespace Intex.Controllers
 
 //--------------------------------------------ADD-------------------------------------------------------------
         [HttpGet]
-<<<<<<< Updated upstream
-=======
+
         public IActionResult AddAccident()
         {
             return View();
@@ -164,7 +163,7 @@ namespace Intex.Controllers
 
 //--------------------------------------------DELETE-------------------------------------------------------------
         [HttpGet]
->>>>>>> Stashed changes
+
         public IActionResult Delete (int crashId)
         {
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashId);
@@ -179,5 +178,6 @@ namespace Intex.Controllers
             
             
         }
+
     }
 }

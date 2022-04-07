@@ -16,12 +16,9 @@ namespace Intex.Models
 
         public void SaveCrash(crash c)
         {
-<<<<<<< Updated upstream
-            _context.SaveChanges();
-=======
+
             context.Update(c);
             context.SaveChanges();
->>>>>>> Stashed changes
         }
 
         public void AddCrash(crash c)

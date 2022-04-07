@@ -15,6 +15,8 @@ namespace Intex.Models.ViewModels
         public IEnumerable<int> Pages { get; set; }
 
         public int TotalPages => (int)Math.Ceiling((double)TotalNumCrashes / CrashesPerPage);
+
+
         
     }
 }

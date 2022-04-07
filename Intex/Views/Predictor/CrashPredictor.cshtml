@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Predictor";
+}
+@model Intex.Models.CrashVariables
+
+
+
+<h1 class="text-center font-weight-bold m-2 p-4">Crash Severity Predictor</h1>
+<div class="row">
+
+
+    <div class="col-8">
+        <h2 class="">Predictor Inputs</h2>
+        <form method="post">
+            <div asp-validation-summary="All"></div>
+
+            <div class="form-group">
+                <label asp-for="PedestiranInvolved">Was a Pedestrian Involved</label>
+                <select asp-for="PedestiranInvolved">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BicyclistInvolved">Was a Cyclist Involved</label>
+                <select asp-for="BicyclistInvolved">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MotorcycleInvolved">Was a Motor Cyclist Involved</label>
+                <select asp-for="MotorcycleInvolved">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImproperRestraint">Were the Passengers Imporperly Restrained</label>
+                <select asp-for="ImproperRestraint">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Unrestrained">Were the Passengers Unrestrained</label>
+                <select asp-for="Unrestrained">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DUI">Was the Driver Under the Influence of Alcohol</label>
+                <select asp-for="DUI">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IntersectionRelated">Was the Accident at an Intersection</label>
+                <select asp-for="IntersectionRelated">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="OverturnRollover">Was the Vehicle Rolled or Overturned</label>
+                <select asp-for="OverturnRollover">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DistractedDriving">Was the Driver Distracted</label>
+                <select asp-for="DistractedDriving">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DrowsyDriving">Was the Driver Drowsy</label>
+                <select asp-for="DrowsyDriving">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="MilepointOther" hidden value="0" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CitySaltLakeCity">Did the Accident Occur in Salt Lake City</label>
+                <select asp-for="CitySaltLakeCity">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CityWestJordan">Did the Accident Occur in West Jordan</label>
+                <select asp-for="CityWestJordan">
+                    <option value="1.0">Yes</option>
+                    <option value="0.0">No</option>
+                </select>
+            </div>
+
+            <button type="submit">Submit Predictors</button>
+        </form>
+    </div>
+    <div class="col-2">
+        <h2 class="">Predicted Crash Severity:</h2>
+    </div>
+
+    <div class="col-2">
+        <h1 class="text-lg-center text-justify justify-content-center @(ViewBag.prediction <= 2 ? "bg-success" : ViewBag.prediction == 3 ? "bg-warning" : ViewBag.prediction == 4 ? "bg-warning" : "bg-danger")">@(ViewBag.prediction)</h1>
+    </div>
+
+</div>
+
