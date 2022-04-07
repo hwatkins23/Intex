@@ -13,22 +13,37 @@
                 <div class="col-6">
                     @*<input asp-for="CRASH_ID" value="@ViewBag.ID" />*@
 
-                    <label asp-for="CRASH_DATE">Accident Date(YYYY-MM-DD)</label><br />
+                    <label asp-for="CRASH_DATE">Accident Date</label><br />
                     <input type="date" asp-for="CRASH_DATE" class="form-control" />
 
-                    <label asp-for="TIME">Time (H:MM:SS)</label><br />
-                    <input asp-for="TIME" class="form-control" />
 
-                    <label asp-for="TIME_OF_DAY">Time of Day</label><br />
-                    <input asp-for="TIME_OF_DAY" class="form-control" />
+                    <div class="row">
+                        <div class="col-6">
+                            <label asp-for="TIME">Time</label><br />
+                            <input asp-for="TIME" placeholder="(H:MM:SS)" class="form-control" />
+                        </div>
+                        <div class="col-6">
+                            <label asp-for="TIME_OF_DAY"> _ </label><br />
+                            @*<input asp-for="TIME_OF_DAY" class="form-control" />*@
+                            <select asp-for="TIME_OF_DAY" class="form-control">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label asp-for="COUNTY_NAME">County</label><br />
+                    <select asp-for="COUNTY_NAME" class="form-control">
+                        <option value="">Select a County</option>
+                        @foreach (string s in ViewBag.Counties)
+                        {
+                            <option value="@s">@s</option>
+                        }
+                    </select>
+
 
                     <label asp-for="CITY">City</label><br />
                     <input asp-for="CITY" class="form-control">
-                    <!--put a view bag with the select in it-->
-
-                    <label asp-for="COUNTY_NAME">County</label><br />
-                    <input asp-for="COUNTY_NAME" class="form-control">
-                    <!--put a view bag with the select in it-->
 
                     <label asp-for="ROUTE">Route</label><br />
                     <input asp-for="ROUTE" class="form-control">
@@ -39,14 +54,19 @@
                     <label asp-for="MAIN_ROAD_NAME">Main Road Name</label><br />
                     <input asp-for="MAIN_ROAD_NAME" class="form-control">
 
-                    <label asp-for="CRASH_SEVERITY_ID">Crash Severity ID (1-5)</label><br />
-                    <input asp-for="CRASH_SEVERITY_ID" class="form-control"><br />
+                    <br />
+                    <input asp-for="CRASH_SEVERITY_ID" class="form-control" type="range" min="1" max="5" step="1" oninput="this.nextElementSibling.value = this.value">
+                    <output>3</output> <label asp-for="CRASH_SEVERITY_ID"> - Crash Severity </label>
+                    <br />
 
-                    <label>Geographic Location</label><br />
-                    <label asp-for="LAT_UTM_Y">Latitude</label><br />
+                    <label>Geographic Location</label>
+                    <br />
+                    <label asp-for="LAT_UTM_Y">Latitude</label>
+                    <br />
                     <input asp-for="LAT_UTM_Y" class="form-control">
 
-                    <label asp-for="LONG_UTM_X">Longitude</label><br />
+                    <label asp-for="LONG_UTM_X">Longitude</label>
+                    <br />
                     <input asp-for="LONG_UTM_X" class="form-control">
 
                     @*<input asp-for="CRASH_ID"value="@Model.CRASH_ID" hidden />*@
@@ -240,7 +260,8 @@
 
                         </tbody>
                     </table>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <br /><br />
+                    <button type="submit" class="btn btn-primary" save="width:50%">Save</button>
                 </div>
             </div>
         </form>
