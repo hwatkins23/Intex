@@ -84,37 +84,39 @@
                 </div>
 
                 @* @if (ViewBag.Crash != 0)
-                {
-
-                <div class="dropdown d-flex flex-row-reverse">
-
-                    @if (ViewBag.CountyName != null)
                     {
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @ViewBag.CountyName County
-                        </button>
-                    }
-                    else
-                    {
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Select County
-                        </button>
-                    }
 
+                    <div class="dropdown d-flex flex-row-reverse">
 
-                    <div style="height: 200px" class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton">
-                        @foreach (string county in ViewBag.Counties)
+                        @if (ViewBag.CountyName != null)
                         {
-                            <a class="dropdown-item" asp-controller="Home" asp-action="Summary" asp-route-countyName="@county">@county</a>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @ViewBag.CountyName County
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select County
+                            </button>
                         }
 
-                    </div>
-                </div>
-            }*@
-                </div>
 
+                        <div style="height: 200px" class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton">
+                            @foreach (string county in ViewBag.Counties)
+                            {
+                                <a class="dropdown-item" asp-controller="Home" asp-action="Summary" asp-route-countyName="@county">@county</a>
+                            }
+
+                        </div>
+                    </div>
+                }*@
             </div>
 
+
+        </div>
+
+        <br /><br />
 
         <table class="table table-bordered table-hover">
 
