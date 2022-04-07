@@ -9,10 +9,10 @@ namespace Intex.Models
         [Required]
         public int CRASH_ID { get; set; }
         public string CRASH_DATE { get; set; }
-        public string DAY_OF_THE_WEEK { get; set; }
-        public string MONTH { get; set; }
-        public int DAY_OF_THE_MONTH { get; set; }
-        public int YEAR { get; set; }
+        //public string DAY_OF_THE_WEEK { get; set; }
+        //public string MONTH { get; set; }
+        //public int DAY_OF_THE_MONTH { get; set; }
+        //public int YEAR { get; set; }
         public string TIME {get;set;}
         public string TIME_OF_DAY { get; set; }
         public string ROUTE { get; set; }

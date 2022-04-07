@@ -102,7 +102,7 @@ namespace Intex.Controllers
             var x = new CrashesViewModel
             {
                 crashes = repo.crashes
-                .OrderByDescending(x => x.CRASH_DATE)
+                .OrderByDescending(x => x.CRASH_ID)
                 .Where(x => x.CRASH_SEVERITY_ID == severity || severity == 0).Where(x => x.COUNTY_NAME == countyName || countyName == null)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
