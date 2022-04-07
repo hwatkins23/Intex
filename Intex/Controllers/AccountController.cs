@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace Intex.Controllers
 {
 //--------------------------------------------AUTHORIZATION-------------------------------------------------------------
+    [Authorize]
     public class AccountController : Controller
     {
         //uses the repo to make testing easier
@@ -160,7 +161,7 @@ namespace Intex.Controllers
             }
            
             repo.SaveCrash(c);
-            return RedirectToAction("AdminDetail", c);
+            return View("AdminDetails", c);
         }
 
 
@@ -177,7 +178,7 @@ namespace Intex.Controllers
         public IActionResult Delete (crash c)
         {
             repo.DeleteCrash(c);
-            return RedirectToAction("AdminSummary");
+            return RedirectToAction("Index");
             
             
         }
