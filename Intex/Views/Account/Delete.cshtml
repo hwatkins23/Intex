@@ -54,6 +54,6 @@
 
 <form method="post" asp-action="Delete" asp-route-crashId="@Model.CRASH_ID">
     <button type="submit" class="btn btn-danger">Delete</button>
-    <a asp-controller="Account" asp-action="AdminSummary" class="btn btn-primary">Cancel</a>
+    <a asp-controller="Home" asp-action="Summary" class="btn btn-primary">Cancel</a>
     <input type="hidden" asp-for="CRASH_ID" />
 </form>
