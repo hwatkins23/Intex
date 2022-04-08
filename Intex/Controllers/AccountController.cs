@@ -32,7 +32,7 @@ namespace Intex.Controllers
         {
 
 //--------------------------------------------PAGINATION---------------------------------------------------------------------
-            int pageSize = 50;
+            int pageSize = 30;
             int maxPages = 10;
 
             int v = (int)Math.Ceiling((double)(repo.crashes.Count()) / pageSize);
@@ -122,6 +122,7 @@ namespace Intex.Controllers
 
         public IActionResult AddAccident()
         {
+            ViewBag.Counties = repo.crashes.Select(x => x.COUNTY_NAME).Distinct().OrderBy(x => x).ToList();
             ViewBag.CrashID = (repo.crashes.Max(c => c.CRASH_ID)) + 1;
             return View();
         }
@@ -131,6 +132,7 @@ namespace Intex.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Counties = repo.crashes.Select(x => x.COUNTY_NAME).Distinct().OrderBy(x => x).ToList();
                 return View();
             }
 
@@ -147,6 +149,7 @@ namespace Intex.Controllers
 
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
 
+            ViewBag.Counties = repo.crashes.Select(x => x.COUNTY_NAME).Distinct().OrderBy(x => x).ToList();
             ViewBag.CrashID = crash.CRASH_ID;
 
             return View("AddAccident", crash);
@@ -157,6 +160,7 @@ namespace Intex.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Counties = repo.crashes.Select(x => x.COUNTY_NAME).Distinct().OrderBy(x => x).ToList();
                 return View("AddAccident");
             }
            

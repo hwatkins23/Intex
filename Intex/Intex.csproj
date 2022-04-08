@@ -30,5 +30,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\img\" />
+    <Content Remove="wwwroot\crash_model.onnx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\crash_model.onnx" />
   </ItemGroup>
 </Project>

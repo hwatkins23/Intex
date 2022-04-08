@@ -3,13 +3,13 @@
 }
 @model Intex.Models.CrashVariables
 
-
+<!------------------------------------MLR Predictor----------------------------------------------------------->
 
 <h1 class="text-center font-weight-bold m-2 p-4">Crash Severity Predictor</h1>
 
 <h2 class="text-center">Predictor Inputs</h2>
 
-<div class="container card" style="background-color : #DFDFDF">
+<div class="container card" style="background-color:#EAEAEA">
 
     <form method="post">
         <div class="row m-2 p-2">
@@ -17,86 +17,114 @@
                 <div asp-validation-summary="All"></div>
 
                 <div class="form-group">
-                    <label asp-for="PedestiranInvolved">Was a Pedestrian Involved</label>
-                    <select asp-for="PedestiranInvolved">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="PedestiranInvolved">Was a Pedestrian Involved</label><br />
+                    <input type="radio" asp-for="PedestiranInvolved" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="PedestiranInvolved" value="0.0"><label>NO</label>
+                    @*<select asp-for="PedestiranInvolved">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="BicyclistInvolved">Was a Cyclist Involved</label>
-                    <select asp-for="BicyclistInvolved">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="BicyclistInvolved">Was a Cyclist Involved</label><br />
+                    <input type="radio" asp-for="BicyclistInvolved" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="BicyclistInvolved" value="0.0"><label>NO</label>
+
+                    @*<select asp-for="BicyclistInvolved">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="MotorcycleInvolved">Was a Motor Cyclist Involved</label>
-                    <select asp-for="MotorcycleInvolved">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="MotorcycleInvolved">Was a Motor Cyclist Involved</label><br />
+                    <input type="radio" asp-for="MotorcycleInvolved" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="MotorcycleInvolved" value="0.0"><label>NO</label>
+
+                    @*<select asp-for="MotorcycleInvolved">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ImproperRestraint">Were the Passengers Imporperly Restrained</label>
-                    <select asp-for="ImproperRestraint">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="ImproperRestraint">Were the Passengers Imporperly Restrained</label><br />
+                    <input type="radio" asp-for="ImproperRestraint" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="ImproperRestraint" value="0.0"><label>NO</label>
+
+                    @*<select asp-for="ImproperRestraint">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Unrestrained">Were the Passengers Unrestrained</label>
-                    <select asp-for="Unrestrained">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="Unrestrained">Were the Passengers Wearing Seatbelts?</label><br />
+                    <input type="radio" asp-for="Unrestrained" value="0.0" checked><label>YES</label>
+                    <input type="radio" asp-for="Unrestrained" value="1.0"><label>NO</label>
+
+                    @*<select asp-for="Unrestrained">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="DUI">Was the Driver Under the Influence of Alcohol</label>
-                    <select asp-for="DUI">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="DUI">Was the Driver Under the Influence of Alcohol</label><br />
+                    <input type="radio" asp-for="DUI" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="DUI" value="0.0"><label>NO</label>
+
+                    @*<select asp-for="DUI">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
+
                 </div>
             </div>
+            <br />
             <div class="col-6 justify-content-end h6">
                 <div class="form-group">
-                    <label asp-for="IntersectionRelated">Was the Accident at an Intersection</label>
-                    <select asp-for="IntersectionRelated">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="IntersectionRelated">Was the Accident at an Intersection</label><br />
+                    <input type="radio" asp-for="IntersectionRelated" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="IntersectionRelated" value="0.0"><label>NO</label>
+
+                    @*<select asp-for="IntersectionRelated">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
 
 
                 <div class="form-group">
-                    <label asp-for="OverturnRollover">Was the Vehicle Rolled or Overturned</label>
-                    <select asp-for="OverturnRollover">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="OverturnRollover">Was the Vehicle Rolled or Overturned</label><br />
+                    <input type="radio" asp-for="OverturnRollover" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="OverturnRollover" value="0.0"><label>NO</label>
+                    @*<select asp-for="OverturnRollover">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="DistractedDriving">Was the Driver Distracted</label>
-                    <select asp-for="DistractedDriving">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="DistractedDriving">Was the Driver Distracted</label><br />
+                    <input type="radio" asp-for="DistractedDriving" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="DistractedDriving" value="0.0"><label>NO</label>
+                    @*<select asp-for="DistractedDriving">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="DrowsyDriving">Was the Driver Drowsy</label>
-                    <select asp-for="DrowsyDriving">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="DrowsyDriving">Was the Driver Drowsy</label><br />
+                    <input type="radio" asp-for="DrowsyDriving" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="DrowsyDriving" value="0.0"><label>NO</label>
+                    @*<select asp-for="DrowsyDriving">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
@@ -104,24 +132,29 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="CitySaltLakeCity">Did the Accident Occur in Salt Lake City</label>
-                    <select asp-for="CitySaltLakeCity">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="CitySaltLakeCity">Did the Accident Occur in Salt Lake City</label><br />
+                    <input type="radio" asp-for="CitySaltLakeCity" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="CitySaltLakeCity" value="0.0"><label>NO</label>
+                    @*<select asp-for="CitySaltLakeCity">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="CityWestJordan">Did the Accident Occur in West Jordan</label>
-                    <select asp-for="CityWestJordan">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>
+                    <label asp-for="CityWestJordan">Did the Accident Occur in West Jordan</label><br />
+                    <input type="radio" asp-for="CityWestJordan" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="CityWestJordan" value="0.0"><label>NO</label>
+                    @*<select asp-for="CityWestJordan">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
-                <button type="submit">Submit Predictors</button>
+                <button type="submit" class="btn btn-primary">Submit Predictors</button>
             </div>
         </div>
+
     </form>
 
     <div class="row">
@@ -132,10 +165,12 @@
         <div class="col-6 text-justify justify-content-center">
             <h1 class="text-center @(ViewBag.prediction <= 2 ? "bg-success" : ViewBag.prediction == 3 ? "bg-warning" : ViewBag.prediction == 4 ? "bg-warning" : "bg-danger")">@(ViewBag.prediction)</h1>
         </div>
+
     </div>
 
 </div>
 <br />
+
 <p class="h6 text-center">
     Use this model to predict crash severity scores based on key features. The predicted 
     severity scores 
@@ -152,9 +187,10 @@
 </div>
 <br />
 
-<p class="h6">
+<p class="h6 text-center">
     This data set is from The Crash Studies Team at UDOT's Traffic & Safety Division maintains a detailed
     database of all crashes on public roadways in Utah. The data is used to report safety trends, identify
     potential safety improvement projects, and allocate limited funding to projects that will have the greatest
     impact on safety. This data and all UDOT Safety Program information are protected under 23 USC 409 and therefore inadmissible in court.
 </p>
+

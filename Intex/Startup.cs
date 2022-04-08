@@ -66,7 +66,7 @@ namespace Intex
             });
 
             services.AddSingleton<InferenceSession>(
-                new InferenceSession("crash_model.onnx")
+                new InferenceSession("wwwroot/crash_model.onnx")
                 );
 
             services.AddControllersWithViews();
