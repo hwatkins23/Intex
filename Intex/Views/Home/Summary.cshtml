@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-2">
-        <h4>Filter by Crash Severity</h4>
+        @*<h4>Filter by Crash Severity</h4>
         <a class="btn btn-block @(ViewBag.Crash == 0 ? "btn-primary" : "btn-outline-primary")" asp-controller="Home" asp-action="Summary" asp-route-severity="0">All Crashes</a>
 
         <a asp-controller="Home" asp-action="Summary" asp-route-severity="1"
@@ -56,14 +56,24 @@
 
                 </div>
             </div>
-        }
+        }*@
+
+        <form asp-controller="Home" asp-action="Summary" method="get">
+            <p>
+                Severity: <input type="number" name="severity" value="@Model.Severity" />
+                County: <input type="text" name="countyName" value="@Model.CountyName" />
+                City: <input type="text" name="cityName" value="@Model.CityString" />
+                @*<input class="btn btn primary" type="submit" value="Filter" />*@
+            </p>
+            <button class="btn btn-primary" type="submit">Filter</button>
+        </form>
 
     </div>
 
 
     <div class="col-10">
         <div class="row">
-            <div class="col-9">
+            @*<div class="col-9">
                 <div page-tag="@Model.PageInfo"
                      page-action="Summary"
                      page-class="btn"
@@ -71,7 +81,7 @@
                      page-class-selected="btn-primary"
                      page-classes-enabled="true"
                      class="btn-group pull-right m-1"></div>
-            </div>
+            </div>*@
 
 
             <div class="col-3 justify-content-end">
@@ -81,6 +91,7 @@
                         <a asp-controller="Account" asp-action="AddAccident" class="btn btn-primary">Add Accident</a>
                     }
                 </div>
+
 
                 @* @if (ViewBag.Crash != 0)
                         {
@@ -110,6 +121,7 @@
                             </div>
                         </div>
                     }*@
+
             </div>
 
 
@@ -127,7 +139,7 @@
                     <td>Main Road</td>
                     <td>City</td>
                     <td>County</td>
-
+                    <td>Crash Severity</td>
 
                 </tr>
             </thead>
