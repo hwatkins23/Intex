@@ -135,11 +135,39 @@ namespace Intex.Controllers
 
 //--------------------------------------------Details Page-------------------------------------------------------------
         [HttpGet]
-        public IActionResult Details(int crashID)
+        public IActionResult Details(int crashID, int predictedval)
         {
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
 
-            return View(crash);
+            if (predictedval == 0)
+            {
+
+                //var inputs = new DetailInputs
+                //{
+                    //CRASH_ID = crashID,
+                    //PEDESTRIAN_INVOLVED = crash.PEDESTRIAN_INVOLVED,
+                    //BICYCLIST_INVOLVED = crash.BICYCLIST_INVOLVED,
+                    //MOTORCYCLE_INVOLVED = crash.MOTORCYCLE_INVOLVED,
+                    //IMPROPER_RESTRAINT = crash.IMPROPER_RESTRAINT,
+                    //UNRESTRAINED = crash.UNRESTRAINED,
+                    //DUI = crash.DUI,
+                    //INTERSECTION_RELATED = crash.INTERSECTION_RELATED,
+                    //OVERTURN_ROLLOVER = crash.OVERTURN_ROLLOVER,
+                    //DISTRACTED_DRIVING = crash.DISTRACTED_DRIVING,
+                    //DROWSY_DRIVING = crash.DROWSY_DRIVING,
+                    //MILEPOINT = crash.MILEPOINT,
+                    //CITY = crash.CITY
+                //};
+
+                return RedirectToAction("DetailPredictor", "Predictor", new { crashID });
+            }
+            else 
+            {
+                
+                ViewBag.PredictedVal = predictedval;
+                return View(crash);  
+            }
+            
         }
 
 
