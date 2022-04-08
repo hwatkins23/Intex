@@ -3,14 +3,20 @@
 
 @model Intex.Models.crash
 
-<h1>Add/Edit Accident</h1>
+<h1 class="text-center">Accident Information</h1>
+<p class="text-center">Please fill out the form below to add or update an accident:</p>
 
 <div>
     <form method="post">
 
             <div asp-validation-summary="All"></div>
             <div class="row">
-                <div class="col-6">
+
+                <div class="col-2">
+                    <p style="color:white">-</p>
+                </div>
+
+                <div class="col-5">
                     @*<input asp-for="CRASH_ID" value="@ViewBag.ID" />*@
 
                     <label asp-for="CRASH_DATE">Accident Date</label><br />
@@ -18,12 +24,12 @@
 
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-9">
                             <label asp-for="TIME">Time</label><br />
                             <input asp-for="TIME" placeholder="(H:MM:SS)" class="form-control" />
                         </div>
-                        <div class="col-6">
-                            <label asp-for="TIME_OF_DAY"> _ </label><br />
+                        <div class="col-3">
+                            <label asp-for="TIME_OF_DAY" style="color:white"> _ </label><br />
                             @*<input asp-for="TIME_OF_DAY" class="form-control" />*@
                             <select asp-for="TIME_OF_DAY" class="form-control">
                                 <option value="AM">AM</option>
@@ -45,6 +51,11 @@
                     <label asp-for="CITY">City</label><br />
                     <input asp-for="CITY" class="form-control">
 
+                    <input asp-for="CRASH_SEVERITY_ID" class="form-control" type="range" min="1" max="5" step="1" oninput="this.nextElementSibling.value = this.value">
+                    <output>3</output> <label asp-for="CRASH_SEVERITY_ID"> - Crash Severity </label>
+                    <br />
+                    <br />
+
                     <label asp-for="ROUTE">Route</label><br />
                     <input asp-for="ROUTE" class="form-control">
 
@@ -54,32 +65,21 @@
                     <label asp-for="MAIN_ROAD_NAME">Main Road Name</label><br />
                     <input asp-for="MAIN_ROAD_NAME" class="form-control">
 
-                    <br />
-                    <input asp-for="CRASH_SEVERITY_ID" class="form-control" type="range" min="1" max="5" step="1" oninput="this.nextElementSibling.value = this.value">
-                    <output>3</output> <label asp-for="CRASH_SEVERITY_ID"> - Crash Severity </label>
-                    <br />
-
-                    <label>Geographic Location</label>
-                    <br />
-                    <label asp-for="LAT_UTM_Y">Latitude</label>
-                    <br />
+                    <label asp-for="LAT_UTM_Y">Latitude</label><br />
                     <input asp-for="LAT_UTM_Y" class="form-control">
 
-                    <label asp-for="LONG_UTM_X">Longitude</label>
-                    <br />
+                    <label asp-for="LONG_UTM_X">Longitude</label><br />
                     <input asp-for="LONG_UTM_X" class="form-control">
 
                     @*<input asp-for="CRASH_ID"value="@Model.CRASH_ID" hidden />*@
                     <input asp-for="CRASH_ID" value="@ViewBag.CrashID" hidden />
 
-
-
                 </div>
 
 
-        
 
-                <div class="col-6 ">
+
+                <div class="col-3">
                     <table>
                         <thead>
                             <tr>
@@ -261,7 +261,10 @@
                         </tbody>
                     </table>
                     <br /><br />
-                    <button type="submit" class="btn btn-primary" save="width:50%">Save</button>
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+                <div class="col-2">
+                    <p style="color:white">-</p>
                 </div>
             </div>
         </form>

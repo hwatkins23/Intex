@@ -2,14 +2,12 @@
     ViewData["Title"] = "Predictor";
 }
 @model Intex.Models.CrashVariables
-
-
-
+<!------------------------------------MLR Predictor----------------------------------------------------------->
 <h1 class="text-center font-weight-bold m-2 p-4">Crash Severity Predictor</h1>
 
 <h2 class="text-center">Predictor Inputs</h2>
 
-<div class="container card" style="background-color : #DFDFDF">
+<div class="container card" style="background-color:#EAEAEA">
 
     <form method="post">
         <div class="row m-2 p-2">
@@ -18,12 +16,12 @@
 
                 <div class="form-group">
                     <label asp-for="PedestiranInvolved">Was a Pedestrian Involved</label><br />
-                    <input type="radio" asp-for="PedestiranInvolved" value="1.0" checked><label >YES</label>
+                    <input type="radio" asp-for="PedestiranInvolved" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="PedestiranInvolved" value="0.0"><label>NO</label>
                     @*<select asp-for="PedestiranInvolved">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>*@
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
@@ -32,9 +30,9 @@
                     <input type="radio" asp-for="BicyclistInvolved" value="0.0"><label>NO</label>
 
                     @*<select asp-for="BicyclistInvolved">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>*@
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
@@ -43,9 +41,9 @@
                     <input type="radio" asp-for="MotorcycleInvolved" value="0.0"><label>NO</label>
 
                     @*<select asp-for="MotorcycleInvolved">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>*@
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
@@ -54,9 +52,9 @@
                     <input type="radio" asp-for="ImproperRestraint" value="0.0"><label>NO</label>
 
                     @*<select asp-for="ImproperRestraint">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>*@
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
@@ -65,9 +63,9 @@
                     <input type="radio" asp-for="Unrestrained" value="1.0"><label>NO</label>
 
                     @*<select asp-for="Unrestrained">
-                        <option value="1.0">Yes</option>
-                        <option value="0.0">No</option>
-                    </select>*@
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
                 <div class="form-group">
@@ -76,117 +74,103 @@
                     <input type="radio" asp-for="DUI" value="0.0"><label>NO</label>
 
                     @*<select asp-for="DUI">
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
-                            </select>*@
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
 
-                        </div>
-                    </div>
+                </div>
+            </div>
             <br />
-                    <div class="col-6 justify-content-end h6">
-                        <div class="form-group">
-                            <label asp-for="IntersectionRelated">Was the Accident at an Intersection</label><br />
-                            <input type="radio" asp-for="IntersectionRelated" value="1.0" checked><label>YES</label>
-                            <input type="radio" asp-for="IntersectionRelated" value="0.0"><label>NO</label>
+            <div class="col-6 justify-content-end h6">
+                <div class="form-group">
+                    <label asp-for="IntersectionRelated">Was the Accident at an Intersection</label><br />
+                    <input type="radio" asp-for="IntersectionRelated" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="IntersectionRelated" value="0.0"><label>NO</label>
 
-                            @*<select asp-for="IntersectionRelated">
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
-                            </select>*@
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label asp-for="OverturnRollover">Was the Vehicle Rolled or Overturned</label><br />
-                            <input type="radio" asp-for="OverturnRollover" value="1.0" checked><label>YES</label>
-                            <input type="radio" asp-for="OverturnRollover" value="0.0"><label>NO</label>
-                            @*<select asp-for="OverturnRollover">
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
-                            </select>*@
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="DistractedDriving">Was the Driver Distracted</label><br />
-                            <input type="radio" asp-for="DistractedDriving" value="1.0" checked><label>YES</label>
-                            <input type="radio" asp-for="DistractedDriving" value="0.0"><label>NO</label>
-                            @*<select asp-for="DistractedDriving">
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
-                            </select>*@
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="DrowsyDriving">Was the Driver Drowsy</label><br />
-                            <input type="radio" asp-for="DrowsyDriving" value="1.0" checked><label>YES</label>
-                            <input type="radio" asp-for="DrowsyDriving" value="0.0"><label>NO</label>
-                            @*<select asp-for="DrowsyDriving">
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
-                            </select>*@
-                        </div>
-
-                        <div class="form-group">
-                            <input asp-for="MilepointOther" hidden value="0" />
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="CitySaltLakeCity">Did the Accident Occur in Salt Lake City</label><br />
-                            <input type="radio" asp-for="CitySaltLakeCity" value="1.0" checked><label>YES</label>
-                            <input type="radio" asp-for="CitySaltLakeCity" value="0.0"><label>NO</label>
-                            @*<select asp-for="CitySaltLakeCity">
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
-                            </select>*@
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="CityWestJordan">Did the Accident Occur in West Jordan</label><br />
-                            <input type="radio" asp-for="CityWestJordan" value="1.0" checked><label>YES</label>
-                            <input type="radio" asp-for="CityWestJordan" value="0.0"><label>NO</label>
-                            @*<select asp-for="CityWestJordan">
-                                <option value="1.0">Yes</option>
-                                <option value="0.0">No</option>
-                            </select>*@
-                        </div>
-
-                        <button type="submit">Submit Predictors</button>
-                    </div>
-                </div>
-            </form>
-
-            <div class="row">
-                <div class="col-6">
-                    <h3 class="">Predicted Crash Severity:</h3>
+                    @*<select asp-for="IntersectionRelated">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
 
-                <div class="col-6 text-justify justify-content-center">
-                    <h1 class="text-center @(ViewBag.prediction <= 2 ? "bg-success" : ViewBag.prediction == 3 ? "bg-warning" : ViewBag.prediction == 4 ? "bg-warning" : "bg-danger")">@(ViewBag.prediction)</h1>
+
+
+                <div class="form-group">
+                    <label asp-for="OverturnRollover">Was the Vehicle Rolled or Overturned</label><br />
+                    <input type="radio" asp-for="OverturnRollover" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="OverturnRollover" value="0.0"><label>NO</label>
+                    @*<select asp-for="OverturnRollover">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
                 </div>
-            </div>
 
-        </div>
-        <br />
-        <p class="h6">
-            Use this Predictor to predict crash severity scores that depend on key features. You can compare predicted severity
-            scores with trend data presented below using Tableau.
-        </p>
-        <br />
-        <h2 class="text-center font-weight-bold">Tableau Data Visualizations</h2>
+                <div class="form-group">
+                    <label asp-for="DistractedDriving">Was the Driver Distracted</label><br />
+                    <input type="radio" asp-for="DistractedDriving" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="DistractedDriving" value="0.0"><label>NO</label>
+                    @*<select asp-for="DistractedDriving">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
+                </div>
 
-        <div class="row">
-            <div class="col-12 justify-content-center">
-                <div class='tableauPlaceholder' id='viz1649299145697' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ut&#47;UtahCrashData_16492254632550&#47;Dashboard2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='UtahCrashData_16492254632550&#47;Dashboard2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ut&#47;UtahCrashData_16492254632550&#47;Dashboard2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>
+                <div class="form-group">
+                    <label asp-for="DrowsyDriving">Was the Driver Drowsy</label><br />
+                    <input type="radio" asp-for="DrowsyDriving" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="DrowsyDriving" value="0.0"><label>NO</label>
+                    @*<select asp-for="DrowsyDriving">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
+                </div>
 
-                <script type='text/javascript'>var divElement = document.getElementById('viz1649299145697'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1000px'; vizElement.style.height = '1027px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1000px'; vizElement.style.height = '1027px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '1827px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+                <div class="form-group">
+                    <input asp-for="MilepointOther" hidden value="0" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CitySaltLakeCity">Did the Accident Occur in Salt Lake City</label><br />
+                    <input type="radio" asp-for="CitySaltLakeCity" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="CitySaltLakeCity" value="0.0"><label>NO</label>
+                    @*<select asp-for="CitySaltLakeCity">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CityWestJordan">Did the Accident Occur in West Jordan</label><br />
+                    <input type="radio" asp-for="CityWestJordan" value="1.0" checked><label>YES</label>
+                    <input type="radio" asp-for="CityWestJordan" value="0.0"><label>NO</label>
+                    @*<select asp-for="CityWestJordan">
+                            <option value="1.0">Yes</option>
+                            <option value="0.0">No</option>
+                        </select>*@
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Predictors</button>
             </div>
         </div>
+<<<<<<< Updated upstream
 
+=======
+    </form>
+
+    <div class="row">
+        <div class="col-6">
+            <h3 class="">Predicted Crash Severity:</h3>
+        </div>
+
+        <div class="col-6 text-justify justify-content-center">
+            <h1 class="text-center @(ViewBag.prediction <= 2 ? "bg-success" : ViewBag.prediction == 3 ? "bg-warning" : ViewBag.prediction == 4 ? "bg-warning" : "bg-danger")">@(ViewBag.prediction)</h1>
+        </div>
+>>>>>>> Stashed changes
     </div>
 
 </div>
 <br />
+<<<<<<< Updated upstream
 <p class="h6 text-center">
     Use this model to predict crash severity scores based on key features. The predicted 
     severity scores 
@@ -210,3 +194,49 @@
     impact on safety. This data and all UDOT Safety Program information are protected under 23 USC 409 and therefore inadmissible in court.
 </p>
 
+=======
+
+
+<!------------------------------------TABLEAU DASHBOARD----------------------------------------------------------->
+<p class="h6 text-center">
+    Use this model to predict crash severity scores based on key features. The predicted
+    severity scores
+    <br />can be compared with the trend data presented on the Tableau dashboard below.
+</p>
+<br />
+<h2 class="text-center font-weight-bold">Tableau Data Visualizations</h2>
+<div class="row">
+    <div class="col-12 justify-content-center">
+        <div class='tableauPlaceholder' id='viz1649354468025' style='position: relative'>
+            <noscript>
+                <a href='#'>
+                    <img alt='Dashboard 2 (2) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ut&#47;UtahCrashData_16492254632550&#47;Dashboard22&#47;1_rss.png' style='border: none' />
+                </a>
+            </noscript>
+            <object class='tableauViz' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='embed_code_version' value='3' />
+                <param name='site_root' value='' />
+                <param name='name' value='UtahCrashData_16492254632550&#47;Dashboard22' />
+                <param name='tabs' value='no' /><param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ut&#47;UtahCrashData_16492254632550&#47;Dashboard22&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='language' value='en-US' />
+                <param name='filter' value='publish=yes' />
+            </object>
+        </div>
+        <script type='text/javascript'>var divElement = document.getElementById('viz1649354468025'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1100px'; vizElement.style.height = '1027px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1100px'; vizElement.style.height = '1027px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '1827px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
+    </div><br /><br />
+    <p class="text-center">
+            This data set is from The Crash Studies Team at UDOT's Traffic & Safety Division maintains a detailed
+            database of all crashes on public roadways in Utah. The data is used to report safety trends, identify
+            potential safety improvement projects, and allocate limited funding to projects that will have the greatest
+            impact on safety. This data and all UDOT Safety Program information are protected under 23 USC 409 and therefore inadmissible in court.
+    </p>
+</div>
+<br />
+>>>>>>> Stashed changes
