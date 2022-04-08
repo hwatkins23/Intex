@@ -163,7 +163,7 @@
         </div>
 
         <div class="col-6 text-justify justify-content-center">
-            <h1 class="text-center @(ViewBag.prediction <= 2 ? "bg-success" : ViewBag.prediction == 3 ? "bg-warning" : ViewBag.prediction == 4 ? "bg-warning" : "bg-danger")">@(ViewBag.prediction)</h1>
+            <h1 class="text-center @(ViewBag.prediction == 1 ? "bg-secondary" : ViewBag.prediction == 2 ? "bg-warning" : ViewBag.prediction == 3 ? "bg-warning" : "bg-danger")">@(ViewBag.prediction)</h1>
         </div>
 
     </div>
