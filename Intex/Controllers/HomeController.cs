@@ -28,11 +28,12 @@ namespace Intex.Controllers
             return View();
         }
 
-        public IActionResult Summary(int severity, string countyName, int pageNum = 1)
+        public IActionResult Summary(int severity, string countyName, string cityName, int pageNum = 1)
         {
 
             ViewBag.Counties = repo.crashes.Select(x => x.COUNTY_NAME).Distinct().OrderBy(x => x).ToList();
             ViewBag.CountyName = countyName;
+            ViewBag.CityName = cityName;
 
 //--------------------------------------------PAGINATION-------------------------------------------------------------
             int pageSize = 50;
@@ -82,21 +83,9 @@ namespace Intex.Controllers
             ViewBag.Crash = severity;
             int numRecords = 0;
 
-            if (severity == 0 && countyName == null)
+            if (severity == 0 && countyName == null && cityName == null)
             {
                 numRecords = repo.crashes.Count();
-            }
-            else if (severity != 0 && countyName == null)
-            {
-                numRecords = repo.crashes.Where(x => x.CRASH_SEVERITY_ID == severity).Count();
-            }
-            else if (severity == 0 && countyName != null)
-            {
-                numRecords = repo.crashes.Where(x => x.COUNTY_NAME == countyName).Count();
-            }
-            else if (severity != 0 && countyName != null)
-            {
-                numRecords = repo.crashes.Where(x => x.COUNTY_NAME == countyName).Where(x => x.CRASH_SEVERITY_ID == severity).Count();
             }
 
             //-----------------------------------------SUMMARY DISPLAY-------------------------------------------------------------
@@ -104,9 +93,17 @@ namespace Intex.Controllers
             {
                 crashes = repo.crashes
                 .OrderByDescending(x => x.CRASH_ID)
-                .Where(x => x.CRASH_SEVERITY_ID == severity || severity == 0).Where(x => x.COUNTY_NAME == countyName || countyName == null)
+                .Where(x => x.CRASH_SEVERITY_ID == severity || severity == 0)
+                .Where(x => x.COUNTY_NAME == countyName || countyName == null)
+                .Where(x => x.CITY.Contains(cityName) || cityName == null)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
+
+                Severity = severity,
+
+                CountyName = countyName,
+
+                CityString = cityName,
 
 
 
@@ -130,7 +127,7 @@ namespace Intex.Controllers
                 }
             };
 
-                return View(x);
+            return View(x);
         }
 
 //--------------------------------------------Details Page-------------------------------------------------------------
