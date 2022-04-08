@@ -109,15 +109,25 @@ namespace Intex.Controllers
 
 //--------------------------------------------DETAILS PAGE-------------------------------------------------------------
         [HttpGet]
-        public IActionResult AdminDetails(int crashID)
+        public IActionResult AdminDetails(int crashID, int predictedval)
         {
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
 
-            return View(crash);
+            if (predictedval == 0)
+            {
+                return RedirectToAction("AdminDetailPredictor", "Predictor", new { crashID });
+            }
+            else
+            {
+
+                ViewBag.PredictedVal = predictedval;
+                return View(crash);
+            }
+
         }
 
 
-//--------------------------------------------ADD-------------------------------------------------------------
+        //--------------------------------------------ADD-------------------------------------------------------------
         [HttpGet]
 
         public IActionResult AddAccident()
@@ -139,7 +149,8 @@ namespace Intex.Controllers
             //c.CRASH_ID = (repo.crashes.Max(c => c.CRASH_ID)) + 1;
 
             repo.AddCrash(c);
-            return View("AdminDetails", c);
+            int crashID = c.CRASH_ID;
+            return RedirectToAction("Details", "Home", new { crashID });
         }
 
 //--------------------------------------------EDIT-------------------------------------------------------------
@@ -165,7 +176,8 @@ namespace Intex.Controllers
             }
            
             repo.SaveCrash(c);
-            return View("AdminDetails", c);
+            int crashID = c.CRASH_ID;
+            return RedirectToAction("Details", "Home", new { crashID, predictedval = 0});
         }
 
 
