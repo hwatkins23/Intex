@@ -67,21 +67,21 @@ namespace Intex.Controllers
             var crashVariables = new CrashVariables();
             var inputs = new DetailInputs
             {
-            PEDESTRIAN_INVOLVED = crash.PEDESTRIAN_INVOLVED,
-            BICYCLIST_INVOLVED = crash.BICYCLIST_INVOLVED,
-            MOTORCYCLE_INVOLVED = crash.MOTORCYCLE_INVOLVED,
-            IMPROPER_RESTRAINT = crash.IMPROPER_RESTRAINT,
-            UNRESTRAINED = crash.UNRESTRAINED,
-            DUI = crash.DUI,
-            INTERSECTION_RELATED = crash.INTERSECTION_RELATED,
-            OVERTURN_ROLLOVER = crash.OVERTURN_ROLLOVER,
-            DISTRACTED_DRIVING = crash.DISTRACTED_DRIVING,
-            DROWSY_DRIVING = crash.DROWSY_DRIVING,
-            MILEPOINT = crash.MILEPOINT,
-            CITY = crash.CITY
+                PEDESTRIAN_INVOLVED = crash.PEDESTRIAN_INVOLVED,
+                BICYCLIST_INVOLVED = crash.BICYCLIST_INVOLVED,
+                MOTORCYCLE_INVOLVED = crash.MOTORCYCLE_INVOLVED,
+                IMPROPER_RESTRAINT = crash.IMPROPER_RESTRAINT,
+                UNRESTRAINED = crash.UNRESTRAINED,
+                DUI = crash.DUI,
+                INTERSECTION_RELATED = crash.INTERSECTION_RELATED,
+                OVERTURN_ROLLOVER = crash.OVERTURN_ROLLOVER,
+                DISTRACTED_DRIVING = crash.DISTRACTED_DRIVING,
+                DROWSY_DRIVING = crash.DROWSY_DRIVING,
+                MILEPOINT = crash.MILEPOINT,
+                CITY = crash.CITY
             };
 
-            
+
 
             float pedestrianFloat = 0.0F;
             float bikeFloat = 0.0F;
@@ -97,31 +97,159 @@ namespace Intex.Controllers
             float citySLCFloat = 0.0F;
             float cityWJFloat = 0.0F;
 
-            if(inputs.PEDESTRIAN_INVOLVED == "TRUE")
+            if (inputs.PEDESTRIAN_INVOLVED == "TRUE" || inputs.PEDESTRIAN_INVOLVED == "true")
             {
                 pedestrianFloat = 1.0F;
             }
-            if(inputs.BICYCLIST_INVOLVED == "TRUE")
+            if (inputs.BICYCLIST_INVOLVED == "TRUE" || inputs.BICYCLIST_INVOLVED == "true")
             {
                 bikeFloat = 1.0F;
             }
-            if(inputs.MOTORCYCLE_INVOLVED == "TRUE")
+            if (inputs.MOTORCYCLE_INVOLVED == "TRUE" || inputs.MOTORCYCLE_INVOLVED == "true")
             {
                 motorcycleFloat = 1.0F;
             }
-            if(inputs.IMPROPER_RESTRAINT == "TRUE")
+            if (inputs.IMPROPER_RESTRAINT == "TRUE" || inputs.IMPROPER_RESTRAINT == "true")
             {
                 improperrestrainFloat = 1.0F;
             }
-            if(inputs.UNRESTRAINED == "TRUE")
+            if (inputs.UNRESTRAINED == "TRUE" || inputs.UNRESTRAINED == "true")
             {
                 unrestrainedFloat = 1.0F;
             }
-            if(inputs.DUI == "TRUE")
+            if (inputs.DUI == "TRUE" || inputs.DUI == "true")
             {
                 duiFloat = 1.0F;
             }
-            if(inputs.INTERSECTION_RELATED == "TRUE")
+            if (inputs.INTERSECTION_RELATED == "TRUE" || inputs.INTERSECTION_RELATED == "true")
+            {
+                intersectionFloat = 1.0F;
+            }
+            if (inputs.OVERTURN_ROLLOVER == "TRUE" || inputs.OVERTURN_ROLLOVER == "true")
+            {
+                overturnFloat = 1.0F;
+            }
+            if (inputs.DISTRACTED_DRIVING == "TRUE" || inputs.DISTRACTED_DRIVING == "true")
+            {
+                distractedFloat = 1.0F;
+            }
+            if (inputs.DROWSY_DRIVING == "TRUE" || inputs.DROWSY_DRIVING == "true")
+            {
+                drowsyFloat = 1.0F;
+            }
+            if (inputs.CITY == "SALT LAKE CITY" || inputs.CITY == "salt lake city")
+            {
+                citySLCFloat = 1.0F;
+            }
+            if (inputs.CITY == "WEST JORDAN" || inputs.CITY == "west jordan")
+            {
+                cityWJFloat = 1.0F;
+            }
+
+            crashVariables.PedestiranInvolved = pedestrianFloat;
+            crashVariables.BicyclistInvolved = bikeFloat;
+            crashVariables.MotorcycleInvolved = motorcycleFloat;
+            crashVariables.ImproperRestraint = improperrestrainFloat;
+            crashVariables.Unrestrained = unrestrainedFloat;
+            crashVariables.DUI = duiFloat;
+            crashVariables.IntersectionRelated = intersectionFloat;
+            crashVariables.OverturnRollover = overturnFloat;
+            crashVariables.DistractedDriving = distractedFloat;
+            crashVariables.DrowsyDriving = drowsyFloat;
+            crashVariables.MilepointOther = mileFloat;
+            crashVariables.CitySaltLakeCity = citySLCFloat;
+            crashVariables.CityWestJordan = cityWJFloat;
+
+            var result = _session.Run(new List<NamedOnnxValue>
+            {
+                NamedOnnxValue.CreateFromTensor("float_input", crashVariables.AsTensor())
+            });
+
+            Tensor<float> score = result.First().AsTensor<float>();
+
+            var prediction = new Prediction { PredictedValue = score.First() };
+            result.Dispose();
+
+            ViewBag.Prediction = prediction.PredictedValue;
+            
+            if (ViewBag.Prediction > 5)
+            {
+                ViewBag.Prediction = 5;
+            }
+            else if (ViewBag.Prediction < 1)
+            {
+                ViewBag.Prediction = 1;
+            }
+            else
+            {
+                ViewBag.Prediction = Math.Round(prediction.PredictedValue);
+            }
+
+            return RedirectToAction("Details","Home", new { crashID, predictedval = ViewBag.Prediction });
+        }
+
+        [HttpGet]
+        public IActionResult AdminDetailPredictor(int crashID)
+        {
+            var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
+            var crashVariables = new CrashVariables();
+            var inputs = new DetailInputs
+            {
+                PEDESTRIAN_INVOLVED = crash.PEDESTRIAN_INVOLVED,
+                BICYCLIST_INVOLVED = crash.BICYCLIST_INVOLVED,
+                MOTORCYCLE_INVOLVED = crash.MOTORCYCLE_INVOLVED,
+                IMPROPER_RESTRAINT = crash.IMPROPER_RESTRAINT,
+                UNRESTRAINED = crash.UNRESTRAINED,
+                DUI = crash.DUI,
+                INTERSECTION_RELATED = crash.INTERSECTION_RELATED,
+                OVERTURN_ROLLOVER = crash.OVERTURN_ROLLOVER,
+                DISTRACTED_DRIVING = crash.DISTRACTED_DRIVING,
+                DROWSY_DRIVING = crash.DROWSY_DRIVING,
+                MILEPOINT = crash.MILEPOINT,
+                CITY = crash.CITY
+            };
+
+
+
+            float pedestrianFloat = 0.0F;
+            float bikeFloat = 0.0F;
+            float motorcycleFloat = 0.0F;
+            float improperrestrainFloat = 0.0F;
+            float unrestrainedFloat = 0.0F;
+            float duiFloat = 0.0F;
+            float intersectionFloat = 0.0F;
+            float overturnFloat = 0.0F;
+            float distractedFloat = 0.0F;
+            float drowsyFloat = 0.0F;
+            float mileFloat = 0.0F;
+            float citySLCFloat = 0.0F;
+            float cityWJFloat = 0.0F;
+
+            if (inputs.PEDESTRIAN_INVOLVED == "TRUE")
+            {
+                pedestrianFloat = 1.0F;
+            }
+            if (inputs.BICYCLIST_INVOLVED == "TRUE")
+            {
+                bikeFloat = 1.0F;
+            }
+            if (inputs.MOTORCYCLE_INVOLVED == "TRUE")
+            {
+                motorcycleFloat = 1.0F;
+            }
+            if (inputs.IMPROPER_RESTRAINT == "TRUE")
+            {
+                improperrestrainFloat = 1.0F;
+            }
+            if (inputs.UNRESTRAINED == "TRUE")
+            {
+                unrestrainedFloat = 1.0F;
+            }
+            if (inputs.DUI == "TRUE")
+            {
+                duiFloat = 1.0F;
+            }
+            if (inputs.INTERSECTION_RELATED == "TRUE")
             {
                 intersectionFloat = 1.0F;
             }
@@ -171,7 +299,7 @@ namespace Intex.Controllers
             result.Dispose();
 
             ViewBag.Prediction = prediction.PredictedValue;
-            
+
             if (ViewBag.Prediction > 5)
             {
                 ViewBag.Prediction = 5;
@@ -185,10 +313,8 @@ namespace Intex.Controllers
                 ViewBag.Prediction = Math.Round(prediction.PredictedValue);
             }
 
-            return RedirectToAction("Details","Home", new { crashID, predictedval = ViewBag.Prediction });
+            return RedirectToAction("AdminDetails", "Account", new { crashID, predictedval = ViewBag.Prediction });
         }
-
-
 
     }
 }

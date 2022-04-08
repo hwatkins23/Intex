@@ -138,25 +138,7 @@ namespace Intex.Controllers
 
             if (predictedval == 0)
             {
-
-                //var inputs = new DetailInputs
-                //{
-                    //CRASH_ID = crashID,
-                    //PEDESTRIAN_INVOLVED = crash.PEDESTRIAN_INVOLVED,
-                    //BICYCLIST_INVOLVED = crash.BICYCLIST_INVOLVED,
-                    //MOTORCYCLE_INVOLVED = crash.MOTORCYCLE_INVOLVED,
-                    //IMPROPER_RESTRAINT = crash.IMPROPER_RESTRAINT,
-                    //UNRESTRAINED = crash.UNRESTRAINED,
-                    //DUI = crash.DUI,
-                    //INTERSECTION_RELATED = crash.INTERSECTION_RELATED,
-                    //OVERTURN_ROLLOVER = crash.OVERTURN_ROLLOVER,
-                    //DISTRACTED_DRIVING = crash.DISTRACTED_DRIVING,
-                    //DROWSY_DRIVING = crash.DROWSY_DRIVING,
-                    //MILEPOINT = crash.MILEPOINT,
-                    //CITY = crash.CITY
-                //};
-
-                return RedirectToAction("DetailPredictor", "Predictor", new { crashID });
+               return RedirectToAction("DetailPredictor", "Predictor", new { crashID });
             }
             else 
             {
