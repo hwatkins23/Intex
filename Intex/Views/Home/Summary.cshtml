@@ -8,55 +8,18 @@
 @model CrashesViewModel
 <!------------------------------------ SHOWS DATABASE ----------------------------------------------------------->
 
+<div class="row text-center">
+    <h1 class="text-center">CrashStats Database</h1>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-controller="Account" asp-action="AddAccident" class="btn btn-primary">Add Accident</a>
+    }
+</div>
+
 <div class="row">
     <div class="col-2">
-        @*<h4>Filter by Crash Severity</h4>
-        <a class="btn btn-block @(ViewBag.Crash == 0 ? "btn-primary" : "btn-outline-primary")" asp-controller="Home" asp-action="Summary" asp-route-severity="0">All Crashes</a>
 
-        <a asp-controller="Home" asp-action="Summary" asp-route-severity="1"
-           class="btn btn-block @(ViewBag.Crash == 1 ? "btn-warning" : "btn-outline-warning")">One</a>
-
-        <a asp-controller="Home" asp-action="Summary" asp-route-severity="2"
-           class="btn btn-block @(ViewBag.Crash == 2 ? "btn-warning" : "btn-outline-warning")">Two</a>
-
-        <a asp-controller="Home" asp-action="Summary" asp-route-severity="3"
-           class="btn btn-block @(ViewBag.Crash == 3 ? "btn-warning" : "btn-outline-warning")">Three</a>
-
-        <a asp-controller="Home" asp-action="Summary" asp-route-severity="4"
-           class="btn btn-block @(ViewBag.Crash == 4 ? "btn-danger" : "btn-outline-danger")">Four</a>
-
-        <a asp-controller="Home" asp-action="Summary" asp-route-severity="5"
-           class="btn btn-block @(ViewBag.Crash == 5 ? "btn-danger" : "btn-outline-danger")">Five</a>
-
-        <br />
-        @if (ViewBag.Crash != 0)
-        {
-
-            <div class="dropdown d-flex flex-row-reverse">
-
-                @if (ViewBag.CountyName != null)
-                {
-                    <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @ViewBag.CountyName COUNTY
-                    </button>
-                }
-                else
-                {
-                    <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select County
-                    </button>
-                }
-
-
-                <div style="height: 200px" class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton">
-                    @foreach (string county in ViewBag.Counties)
-                    {
-                        <a class="dropdown-item" asp-controller="Home" asp-action="Summary" asp-route-countyName="@county">@county</a>
-                    }
-
-                </div>
-            </div>
-        }*@
 
         <form asp-controller="Home" asp-action="Summary" method="get">
             <p>
@@ -73,19 +36,9 @@
 
     <div class="col-10">
         <div class="row">
-            @*<div class="col-9">
-                <div page-tag="@Model.PageInfo"
-                     page-action="Summary"
-                     page-class="btn"
-                     page-class-normal="btn-outline-dark"
-                     page-class-selected="btn-primary"
-                     page-classes-enabled="true"
-                     class="btn-group pull-right m-1"></div>
-            </div>*@
-
 
             <div class="col-3 justify-content-end">
-                <div class="dropdown d-flex flex-row-reverse">
+                <div class="d-flex flex-row-reverse">
                     @if (User.Identity.IsAuthenticated)
                     {
                         <a asp-controller="Account" asp-action="AddAccident" class="btn btn-primary">Add Accident</a>
@@ -93,37 +46,7 @@
                 </div>
 
 
-                @* @if (ViewBag.Crash != 0)
-                        {
-
-                        <div class="dropdown d-flex flex-row-reverse">
-
-                            @if (ViewBag.CountyName != null)
-                            {
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @ViewBag.CountyName County
-                                </button>
-                            }
-                            else
-                            {
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Select County
-                                </button>
-                            }
-
-
-                            <div style="height: 200px" class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton">
-                                @foreach (string county in ViewBag.Counties)
-                                {
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="Summary" asp-route-countyName="@county">@county</a>
-                                }
-
-                            </div>
-                        </div>
-                    }*@
-
             </div>
-
 
         </div>
 
