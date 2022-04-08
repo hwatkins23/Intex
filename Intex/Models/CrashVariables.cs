@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Intex.Models
 {
+    //--------------------------------------------------------Crash Variables for Predictor--------------------------------------------------------
     public class CrashVariables
     {
         public float PedestiranInvolved { get; set; }
@@ -22,6 +23,7 @@ namespace Intex.Models
         public float CitySaltLakeCity { get; set; }
         public float CityWestJordan { get; set; }
 
+        //Runs the variables from the controller for the prediction
         public Tensor<float> AsTensor()
         {
             float[] data = new float[]

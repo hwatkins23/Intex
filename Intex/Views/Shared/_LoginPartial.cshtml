@@ -2,6 +2,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+@*This is for the admin login stuff*@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {

@@ -113,33 +113,15 @@ namespace Intex
             app.UseAuthentication();
             app.UseAuthorization();
 
+            //This commented code is the CSP header 
+            //app.Use(async (context, next) =>
+            //{
+            //    context.Response.Headers.Add(“Content - Security - Policy”, “default - src ‘self’;“);
+            //    await next();
+            //});
+
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllerRoute(
-                //    name: "CountySeverityPage",
-                //    pattern: "Severity{severity}/Page{pageNum}/County{countyName}");
-
-                //endpoints.MapControllerRoute(
-                //    name: "SeverityPage",
-                //    pattern: "Severity{severity}/Page{pageNum}",
-                //    defaults: new {Controller = "Home", action = "Summary"});
-
-                //endpoints.MapControllerRoute(
-                //    name: "Severity",
-                //    pattern: "Severity{severity}",
-                //    defaults: new { Controller = "Home", action = "Summary", pageNum = 1});
-
-                //endpoints.MapControllerRoute(
-                //    name: "Filter",
-                //    pattern: "Severity{severity}/County{countyName}/CitySearch{cityName}/Page{pageNum}",
-                //    defaults: new { Controller = "Home", action = "Summary" });
-                
-                //endpoints.MapControllerRoute(
-                //    name: "Paging",
-                //    pattern: "Page{pageNum}",
-                //    defaults: new { Controller = "Home", action = "Summary"});
-
-                
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{crashId?}");

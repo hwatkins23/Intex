@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Intex.Models
 {
+    //----------------------------------------------Detail Inputs (inputs for predictor from detail pages)-----------------------------------
     public class DetailInputs
     {
 

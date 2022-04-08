@@ -89,6 +89,7 @@ namespace Intex.Controllers
             }
 
             //-----------------------------------------SUMMARY DISPLAY-------------------------------------------------------------
+            //Displays the records of crashes from the database
             var x = new CrashesViewModel
             {
                 crashes = repo.crashes
@@ -106,18 +107,12 @@ namespace Intex.Controllers
                 CityString = cityName,
 
 
-
+                //Necessary instance of PageInfo for pagination through the display of the database
                 PageInfo = new PageInfo
                 {
                     TotalNumCrashes = numRecords,
-                    
-                    //(severity == 0
-                    //        ? repo.crashes.Count()
-                    //        : repo.crashes.Where(x => x.CRASH_SEVERITY_ID == severity).Count()),
-
                     CrashesPerPage = pageSize,
                     CurrentPage = pageNum,
-
                     StartPage = startPage,
                     EndPage = endPage,
                     StartIndex = startIndex,
@@ -132,6 +127,7 @@ namespace Intex.Controllers
 
 //--------------------------------------------Details Page-------------------------------------------------------------
         [HttpGet]
+        //This gets the more in depth details for a specific crash and then passes that instance to the model to get a predicted severity on load of the page
         public IActionResult Details(int crashID, int predictedval)
         {
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);

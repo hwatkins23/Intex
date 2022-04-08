@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace Intex.Models
 {
+    //------------------------------------------------------Entity Framework Crash Repository-------------------------------------------------------------
     public class EFcrashRepository : IcrashRepository
     {
         private crashDbContext context { get; set; }

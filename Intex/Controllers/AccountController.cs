@@ -109,6 +109,7 @@ namespace Intex.Controllers
 
 //--------------------------------------------DETAILS PAGE-------------------------------------------------------------
         [HttpGet]
+        //Here we pass the crash ID for a specific instance and a predictedvalue for the model to make a prediction
         public IActionResult AdminDetails(int crashID, int predictedval)
         {
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashID);
@@ -129,7 +130,7 @@ namespace Intex.Controllers
 
         //--------------------------------------------ADD-------------------------------------------------------------
         [HttpGet]
-
+        //The Get displays the view with the form to add a new crash
         public IActionResult AddAccident()
         {
             ViewBag.Counties = repo.crashes.Select(x => x.COUNTY_NAME).Distinct().OrderBy(x => x).ToList();
@@ -138,6 +139,7 @@ namespace Intex.Controllers
         }
 
         [HttpPost]
+        //The Post runs the newly created crash instance through the model and adds the instance to the database
         public IActionResult AddAccident(crash c)
         {
             if (!ModelState.IsValid)
@@ -155,6 +157,7 @@ namespace Intex.Controllers
 
 //--------------------------------------------EDIT-------------------------------------------------------------
         [HttpGet]
+        //Like the add displays the form to change features about the crash
         public IActionResult Edit(int crashID)
         {
 
@@ -167,6 +170,7 @@ namespace Intex.Controllers
         }
 
         [HttpPost]
+        //updates the record in the database and sends the record to the model to predict the crash severity for the changes.
         public IActionResult Edit(crash c)
         {
             if (!ModelState.IsValid)
@@ -183,7 +187,7 @@ namespace Intex.Controllers
 
 //--------------------------------------------DELETE-------------------------------------------------------------
         [HttpGet]
-
+        //Displays a view to verify the delete confirmation
         public IActionResult Delete (int crashId)
         {
             var crash = repo.crashes.Single(x => x.CRASH_ID == crashId);
@@ -191,6 +195,7 @@ namespace Intex.Controllers
         }
 
         [HttpPost]
+        //Deletes the specific instance of a crash from the database
         public IActionResult Delete (crash c)
         {
             repo.DeleteCrash(c);

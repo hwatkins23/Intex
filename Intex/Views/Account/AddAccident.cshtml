@@ -3,7 +3,7 @@
 }
 
 @model Intex.Models.crash
-
+@*This is the view that has all the code and routes necessary to interact with the account controller to add a instance of a crash to the database*@
 <h1 class="text-center">Accident Information</h1>
 <p class="text-center">Please fill out the form below to add or update an accident:</p>
 
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="col-5">
-                    @*<input asp-for="CRASH_ID" value="@ViewBag.ID" />*@
+                   
 
                     <label asp-for="CRASH_DATE">Accident Date</label><br />
                     <input type="date" asp-for="CRASH_DATE" class="form-control" />
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-3">
                             <label asp-for="TIME_OF_DAY" style="color:white"> _ </label><br />
-                            @*<input asp-for="TIME_OF_DAY" class="form-control" />*@
+                            
                             <select asp-for="TIME_OF_DAY" class="form-control">
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
@@ -72,7 +72,7 @@
                     <label asp-for="LONG_UTM_X">Longitude</label><br />
                     <input asp-for="LONG_UTM_X" class="form-control">
 
-                    @*<input asp-for="CRASH_ID"value="@Model.CRASH_ID" hidden />*@
+                   
                     <input asp-for="CRASH_ID" value="@ViewBag.CrashID" hidden />
 
                 </div>

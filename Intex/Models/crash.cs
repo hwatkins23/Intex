@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 namespace Intex.Models
 {
+    //----------------------------------------------Crash Model----------------------------------------------
     public class crash
     {
         [Key]

@@ -10,7 +10,7 @@
 <h2 class="text-center">Predictor Inputs</h2>
 
 <div class="container card" style="background-color:#EAEAEA">
-
+    @*This form is for the model to make a prediction based on the form inputs*@
     <form method="post">
         <div class="row m-2 p-2">
             <div class="col-6 justify-content-end h6">
@@ -20,10 +20,7 @@
                     <label asp-for="PedestiranInvolved">Was a Pedestrian Involved</label><br />
                     <input type="radio" asp-for="PedestiranInvolved" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="PedestiranInvolved" value="0.0"><label>NO</label>
-                    @*<select asp-for="PedestiranInvolved">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <div class="form-group">
@@ -31,10 +28,7 @@
                     <input type="radio" asp-for="BicyclistInvolved" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="BicyclistInvolved" value="0.0"><label>NO</label>
 
-                    @*<select asp-for="BicyclistInvolved">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <div class="form-group">
@@ -42,10 +36,7 @@
                     <input type="radio" asp-for="MotorcycleInvolved" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="MotorcycleInvolved" value="0.0"><label>NO</label>
 
-                    @*<select asp-for="MotorcycleInvolved">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <div class="form-group">
@@ -53,10 +44,7 @@
                     <input type="radio" asp-for="ImproperRestraint" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="ImproperRestraint" value="0.0"><label>NO</label>
 
-                    @*<select asp-for="ImproperRestraint">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <div class="form-group">
@@ -64,10 +52,7 @@
                     <input type="radio" asp-for="Unrestrained" value="0.0" checked><label>YES</label>
                     <input type="radio" asp-for="Unrestrained" value="1.0"><label>NO</label>
 
-                    @*<select asp-for="Unrestrained">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <div class="form-group">
@@ -75,10 +60,7 @@
                     <input type="radio" asp-for="DUI" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="DUI" value="0.0"><label>NO</label>
 
-                    @*<select asp-for="DUI">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
 
                 </div>
             </div>
@@ -89,10 +71,7 @@
                     <input type="radio" asp-for="IntersectionRelated" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="IntersectionRelated" value="0.0"><label>NO</label>
 
-                    @*<select asp-for="IntersectionRelated">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
 
@@ -101,30 +80,21 @@
                     <label asp-for="OverturnRollover">Was the Vehicle Rolled or Overturned</label><br />
                     <input type="radio" asp-for="OverturnRollover" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="OverturnRollover" value="0.0"><label>NO</label>
-                    @*<select asp-for="OverturnRollover">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <div class="form-group">
                     <label asp-for="DistractedDriving">Was the Driver Distracted</label><br />
                     <input type="radio" asp-for="DistractedDriving" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="DistractedDriving" value="0.0"><label>NO</label>
-                    @*<select asp-for="DistractedDriving">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <div class="form-group">
                     <label asp-for="DrowsyDriving">Was the Driver Drowsy</label><br />
                     <input type="radio" asp-for="DrowsyDriving" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="DrowsyDriving" value="0.0"><label>NO</label>
-                    @*<select asp-for="DrowsyDriving">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <div class="form-group">
@@ -135,20 +105,14 @@
                     <label asp-for="CitySaltLakeCity">Did the Accident Occur in Salt Lake City</label><br />
                     <input type="radio" asp-for="CitySaltLakeCity" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="CitySaltLakeCity" value="0.0"><label>NO</label>
-                    @*<select asp-for="CitySaltLakeCity">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <div class="form-group">
                     <label asp-for="CityWestJordan">Did the Accident Occur in West Jordan</label><br />
                     <input type="radio" asp-for="CityWestJordan" value="1.0" checked><label>YES</label>
                     <input type="radio" asp-for="CityWestJordan" value="0.0"><label>NO</label>
-                    @*<select asp-for="CityWestJordan">
-                            <option value="1.0">Yes</option>
-                            <option value="0.0">No</option>
-                        </select>*@
+                    
                 </div>
 
                 <button type="submit" class="btn btn-primary">Calculate</button>
@@ -177,6 +141,7 @@
     <br />can be compared with the trend data presented on the Tableau dashboard below. 
 </p>
 <br />
+@*This is for the Tableau visulizations for added analytics*@
 <h2 class="text-center font-weight-bold">Tableau Data Visualizations</h2>
 
 <div class="row">

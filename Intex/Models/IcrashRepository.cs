@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace Intex.Models
 {
+    //---------------------------------------------------------Interface for Crash Repository-------------------------------------------------------
     public interface IcrashRepository
     {
             public IQueryable<crash> crashes { get; }
